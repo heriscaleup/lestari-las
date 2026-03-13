@@ -3,6 +3,8 @@ import './App.css'
 
 const baseUrl = import.meta.env.BASE_URL
 const brandLogo = `${baseUrl}brand/lestari-las-logo.webp`
+const youtubeEmbedUrl =
+  'https://www.youtube.com/embed/ZUeP3EcdEkY?si=DcnmEv7xc_Dr1oSO'
 const whatsappLink =
   'https://wa.me/6282113114498?text=Halo%20Lestari%20Las,%20saya%20mau%20tanya%20tentang%20jasa%20las%20dan%20fabrikasi.'
 
@@ -154,6 +156,12 @@ const prepItems = [
   'Budget atau prioritas kebutuhan utama',
 ]
 
+const videoHighlights = [
+  'Perkenalan singkat usaha dan karakter pengerjaan',
+  'Suasana workshop dan proses fabrikasi',
+  'Cuplikan cinematic hasil proyek yang sedang dikerjakan',
+]
+
 function App() {
   useEffect(() => {
     const elements = document.querySelectorAll('[data-reveal]')
@@ -281,6 +289,43 @@ function App() {
             {[...marqueeItems, ...marqueeItems].map((item, index) => (
               <span key={`${item}-${index}`}>{item}</span>
             ))}
+          </div>
+        </section>
+
+        <section className="section video-section">
+          <div className="container video-layout">
+            <div className="video-copy" data-reveal>
+              <p className="section-kicker">Video Perkenalan</p>
+              <h2>Lihat gambaran singkat tentang suasana kerja dan karakter hasil Lestari Las.</h2>
+              <p>
+                Video ini cocok ditempatkan di awal supaya pengunjung tidak hanya membaca, tetapi
+                juga bisa langsung merasakan nuansa workshop, cara kerja, dan gaya proyek yang
+                dikerjakan. Buat bisnis seperti jasa las, sentuhan visual seperti ini membantu
+                kepercayaan tumbuh lebih cepat.
+              </p>
+
+              <div className="video-bullets" aria-label="Isi video">
+                {videoHighlights.map((item) => (
+                  <article key={item}>
+                    <span />
+                    <p>{item}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className="video-frame-shell" data-reveal style={{ '--delay': '120ms' }}>
+              <div className="video-frame">
+                <iframe
+                  src={youtubeEmbedUrl}
+                  title="Video perkenalan dan cinematic proyek Lestari Las"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+            </div>
           </div>
         </section>
 
