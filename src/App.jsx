@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import './App.css'
 
 const baseUrl = import.meta.env.BASE_URL
+const brandLogo = `${baseUrl}brand/lestari-las-logo.webp`
 
 const highlights = [
   'Model bisa disesuaikan dengan gaya rumah atau bangunan',
@@ -184,9 +185,10 @@ function App() {
       <header className="site-header">
         <div className="container header-inner">
           <a className="brand" href="#top" aria-label="Lestari Las">
-            <span className="brand-mark">LL</span>
-            <span>
-              <strong>Lestari Las</strong>
+            <span className="brand-logo-shell">
+              <img className="brand-logo" src={brandLogo} alt="Logo Lestari Las" />
+            </span>
+            <span className="brand-meta">
               <small>Pagar, canopy, railing, pintu garasi</small>
             </span>
           </a>
