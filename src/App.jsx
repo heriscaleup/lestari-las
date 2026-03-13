@@ -5,7 +5,7 @@ const baseUrl = import.meta.env.BASE_URL
 const brandLogo = `${baseUrl}brand/lestari-las-logo.webp`
 const youtubeEmbedUrl =
   'https://www.youtube.com/embed/ZUeP3EcdEkY?si=DcnmEv7xc_Dr1oSO'
-const locationLink = 'https://share.google/DHpgkHaOhwdQCLhwM'
+const locationLink = 'https://share.google/GcVGlLN2jODNQgiD9'
 const mapEmbedUrl =
   'https://www.google.com/maps?q=Bengkel%20Las%20Lestari%20Jalan%20Jombang%20Raya%20Ciledug%20depan%20Ruko%20Emerald%20Bintaro%20samping%20Apartemen%20Lippo&z=17&output=embed'
 const whatsappLink =
