@@ -345,6 +345,7 @@
 .portfolio-card,
 .fit-card,
 .process-card,
+.location-card,
 .faq-list details,
 .contact-card,
 .prep-list article {
@@ -656,6 +657,7 @@
 .portfolio-grid,
 .fit-cards,
 .process-grid,
+.contact-info-grid,
 .prep-list {
   display: grid;
   gap: 18px;
@@ -822,9 +824,52 @@
   max-width: 65ch;
 }
 
+.contact-info-grid {
+  grid-template-columns: minmax(280px, 0.95fr) minmax(0, 1.05fr);
+  margin-top: 28px;
+  align-items: start;
+}
+
+.location-card {
+  padding: 24px;
+  min-height: 100%;
+}
+
+.location-card h3 {
+  margin: 0;
+  color: var(--color-white);
+  font-size: 1.4rem;
+  line-height: 1.15;
+}
+
+.location-copy {
+  margin-top: 16px;
+  color: var(--color-muted);
+}
+
+.location-note {
+  display: grid;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.location-note strong {
+  color: var(--color-white);
+  font-size: 0.92rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.location-note span {
+  color: var(--color-muted);
+}
+
 .prep-list {
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin-top: 28px;
 }
 
 .prep-list article {
@@ -888,6 +933,7 @@
 
   .services-grid,
   .process-grid,
+  .contact-info-grid,
   .prep-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -926,6 +972,7 @@
 
   .services-grid,
   .process-grid,
+  .contact-info-grid,
   .prep-list,
   .fit-cards {
     grid-template-columns: 1fr;
@@ -1008,6 +1055,7 @@
   .portfolio-card,
   .fit-card,
   .process-card,
+  .location-card,
   .faq-list details,
   .contact-card,
   .prep-list article {
@@ -1018,6 +1066,7 @@
   .service-card,
   .fit-card,
   .process-card,
+  .location-card,
   .faq-list details,
   .contact-card,
   .prep-list article,

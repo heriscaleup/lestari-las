@@ -5,6 +5,7 @@ const baseUrl = import.meta.env.BASE_URL
 const brandLogo = `${baseUrl}brand/lestari-las-logo.webp`
 const youtubeEmbedUrl =
   'https://www.youtube.com/embed/ZUeP3EcdEkY?si=DcnmEv7xc_Dr1oSO'
+const locationLink = 'https://share.google/DHpgkHaOhwdQCLhwM'
 const whatsappLink =
   'https://wa.me/6282113114498?text=Halo%20Lestari%20Las,%20saya%20mau%20tanya%20tentang%20jasa%20las%20dan%20fabrikasi.'
 
@@ -503,31 +504,46 @@ function App() {
         <section className="section contact-section" id="contact">
           <div className="container contact-card" data-reveal>
             <div className="contact-copy">
-              <p className="section-kicker">Sebelum Konsultasi</p>
-              <h2>Agar estimasi dan diskusi berjalan lebih cepat, siapkan data dasar proyek Anda.</h2>
+              <p className="section-kicker">Kontak & Lokasi</p>
+              <h2>Bengkel Las Lestari siap melayani kebutuhan las dan fabrikasi untuk rumah maupun bangunan usaha.</h2>
               <p>
-                Semakin lengkap informasi awal yang Anda kirim, semakin mudah menentukan model,
-                material, sistem bukaan, dan kisaran pengerjaan yang sesuai dengan kebutuhan
-                bangunan Anda.
+                Jika ingin berdiskusi soal pagar, canopy, railing, atau pintu garasi, Anda bisa
+                langsung hubungi kami via WhatsApp atau datang ke workshop untuk melihat lokasi dan
+                berkonsultasi lebih lanjut.
               </p>
             </div>
 
             <div className="contact-actions">
-              <a className="button button-primary" href="#process">
-                Pelajari Proses
+              <a className="button button-primary" href={whatsappLink} target="_blank" rel="noreferrer">
+                Tanya via WhatsApp
               </a>
-              <a className="button button-secondary" href="#portfolio">
-                Lihat Inspirasi
+              <a className="button button-secondary" href={locationLink} target="_blank" rel="noreferrer">
+                Buka Lokasi
               </a>
             </div>
 
-            <div className="prep-list" aria-label="Data final yang dibutuhkan">
-              {prepItems.map((item, index) => (
-                <article key={item} data-reveal style={{ '--delay': `${index * 70}ms` }}>
-                  <span>0{index + 1}</span>
-                  <p>{item}</p>
-                </article>
-              ))}
+            <div className="contact-info-grid">
+              <article className="location-card" data-reveal style={{ '--delay': '80ms' }}>
+                <p className="section-kicker">Alamat Bengkel</p>
+                <h3>Bengkel Las Lestari</h3>
+                <p className="location-copy">
+                  Jalan Jombang Raya, Ciledug. Depan Ruko Emerald Bintaro, sekitar 100 meter dari
+                  Gerbang ABRI arah Ciledug, tepat di samping Apartemen Lippo.
+                </p>
+                <div className="location-note">
+                  <strong>Patokan lokasi</strong>
+                  <span>Mudah ditemukan dari arah Ciledug dan area Bintaro sekitarnya.</span>
+                </div>
+              </article>
+
+              <div className="prep-list" aria-label="Data awal sebelum konsultasi">
+                {prepItems.map((item, index) => (
+                  <article key={item} data-reveal style={{ '--delay': `${index * 70}ms` }}>
+                    <span>0{index + 1}</span>
+                    <p>{item}</p>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </section>
