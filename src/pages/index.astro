@@ -7,9 +7,9 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 const brandLogo = `${baseUrl}brand/lestari-las-logo.webp`
 const youtubeEmbedUrl =
   'https://www.youtube.com/embed/ZUeP3EcdEkY?si=DcnmEv7xc_Dr1oSO'
-const locationLink = 'https://share.google/GcVGlLN2jODNQgiD9'
+const locationLink = 'https://maps.app.goo.gl/tUtmmHC4YYtszHC3A'
 const mapEmbedUrl =
-  'https://www.google.com/maps?q=Bengkel%20Las%20Dian%20Jaya%20Jl.%20Jombang%20Raya%20No.10%20Pd.%20Aren%20Kota%20Tangerang%20Selatan%20Banten&z=17&output=embed'
+  'https://www.google.com/maps?q=-6.2822222,106.7025833&z=18&output=embed'
 const whatsappLink =
   'https://wa.me/6282113114498?text=Halo%20Lestari%20Las,%20saya%20mau%20tanya%20tentang%20jasa%20las%20dan%20fabrikasi.'
 
@@ -189,7 +189,7 @@ const videoHighlights = [
 
 const marqueeLoop = [...marqueeItems, ...marqueeItems]
 const pageDescription =
-  'Bengkel Las Lestari melayani pagar, canopy, railing, pintu garasi, dan fabrikasi. Patokan lokasi workshop mengarah ke Bengkel Las Dian Jaya di Jalan Jombang Raya.'
+  'Bengkel Las Lestari melayani pagar, canopy, railing, pintu garasi, dan fabrikasi. Titik workshop tersedia lewat Google Maps dengan patokan Jln Jombang Ciledug, depan Ruko Emerald Bintaro No. 7.'
 ---
 
 <BaseLayout
@@ -563,17 +563,17 @@ const pageDescription =
 
           <div class="contact-info-grid">
             <article class="location-card" data-reveal style="--delay: 80ms;">
-              <p class="section-kicker">Patokan Google Maps</p>
-              <h3>Bengkel Las Dian Jaya</h3>
+              <p class="section-kicker">Titik Google Maps</p>
+              <h3>Titik Lokasi Workshop</h3>
               <p class="location-copy">
-                Titik map workshop mengarah ke Bengkel Las Dian Jaya di Jalan Jombang Raya No.10,
-                Pondok Aren, Kota Tangerang Selatan. Lokasinya berada di area Jombang Raya dan
-                bisa dijadikan patokan saat berkunjung ke workshop.
+                Link Google Maps sekarang mengarah langsung ke titik workshop yang dipakai sebagai
+                patokan lokasi. Untuk patokan darat, lokasinya berada di Jln Jombang Ciledug,
+                depan Ruko Emerald Bintaro No. 7, sekitar 100 meter dari Apartemen Embarcadero.
               </p>
               <div class="location-note">
-                <strong>Patokan lokasi</strong>
+                <strong>Koordinat & Patokan</strong>
                 <span>
-                  Gunakan titik Bengkel Las Dian Jaya saat buka Maps agar arahnya lebih tepat.
+                  6°16'56.0"S 106°42'09.3"E · Depan Ruko Emerald Bintaro No. 7
                 </span>
               </div>
             </article>
@@ -597,17 +597,18 @@ const pageDescription =
           <div class="footer-map-card" data-reveal>
             <div class="footer-map-copy">
               <p class="section-kicker">Lokasi Bengkel</p>
-              <h2>Workshop bisa dicek langsung lewat titik map Bengkel Las Dian Jaya.</h2>
+              <h2>Workshop bisa dicek langsung lewat titik koordinat yang paling akurat.</h2>
               <p>
                 Gunakan peta di bawah ini untuk melihat arah, memperkirakan jarak tempuh, dan
-                memastikan patokan lokasi sebelum datang ke workshop.
+                memastikan titik workshop yang dipakai di Google Maps sudah sesuai dengan patokan
+                Jln Jombang Ciledug, depan Ruko Emerald Bintaro No. 7.
               </p>
             </div>
 
             <div class="footer-map-frame">
               <iframe
                 src={mapEmbedUrl}
-                title="Peta lokasi Bengkel Las Dian Jaya"
+                title="Peta titik lokasi workshop Lestari Las"
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
               ></iframe>
