@@ -1,0 +1,627 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`
+const brandLogo = `${baseUrl}brand/lestari-las-logo.webp`
+const youtubeEmbedUrl =
+  'https://www.youtube.com/embed/ZUeP3EcdEkY?si=DcnmEv7xc_Dr1oSO'
+const locationLink = 'https://share.google/GcVGlLN2jODNQgiD9'
+const mapEmbedUrl =
+  'https://www.google.com/maps?q=Bengkel%20Las%20Dian%20Jaya%20Jl.%20Jombang%20Raya%20No.10%20Pd.%20Aren%20Kota%20Tangerang%20Selatan%20Banten&z=17&output=embed'
+const whatsappLink =
+  'https://wa.me/6282113114498?text=Halo%20Lestari%20Las,%20saya%20mau%20tanya%20tentang%20jasa%20las%20dan%20fabrikasi.'
+
+const highlights = [
+  'Model bisa disesuaikan dengan gaya rumah atau bangunan',
+  'Struktur kuat dengan detail finishing yang lebih rapi',
+  'Ukuran, bukaan, dan material mengikuti kebutuhan lapangan',
+]
+
+const marqueeItems = [
+  'Pagar Custom',
+  'Canopy Modern',
+  'Railing Balkon',
+  'Railing Tangga',
+  'Pintu Garasi',
+  'Finishing Rapi',
+  'Survey & Ukur',
+  'Pemasangan Presisi',
+]
+
+const services = [
+  {
+    title: 'Pagar Custom',
+    description:
+      'Pagar rumah yang dirancang untuk memberi rasa aman sekaligus memperkuat tampilan depan bangunan.',
+    points: [
+      'Model minimalis sampai klasik',
+      'Bukaan swing atau sliding',
+      'Proporsi rangka dan bilah lebih presisi',
+    ],
+  },
+  {
+    title: 'Railing Balkon',
+    description:
+      'Railing balkon yang aman dipakai setiap hari tanpa membuat tampilan bangunan terasa berat.',
+    points: [
+      'Visual lebih bersih',
+      'Pilihan motif vertikal atau horizontal',
+      'Cocok untuk rumah, kos, dan ruko',
+    ],
+  },
+  {
+    title: 'Canopy Modern',
+    description:
+      'Solusi pelindung teras atau carport yang tetap enak dilihat dari luar dan nyaman untuk aktivitas harian.',
+    points: [
+      'Rangka rapi',
+      'Cocok untuk area usaha dan rumah',
+      'Material atap bisa disesuaikan kebutuhan',
+    ],
+  },
+  {
+    title: 'Railing Tangga',
+    description:
+      'Railing tangga indoor maupun outdoor yang fokus pada kenyamanan genggam, keamanan, dan detail akhir.',
+    points: [
+      'Aman untuk keluarga',
+      'Menyatu dengan interior',
+      'Finishing bisa dibuat lebih elegan',
+    ],
+  },
+  {
+    title: 'Pintu Garasi',
+    description:
+      'Pintu garasi yang kuat, nyaman dipakai, dan tetap selaras dengan desain rumah di bagian depan.',
+    points: [
+      'Bisa lipat atau dorong',
+      'Lebih rapi untuk fasad depan',
+      'Menjaga area garasi terasa aman',
+    ],
+  },
+]
+
+const galleryItems = [
+  {
+    category: 'Gerbang & Pagar',
+    title: 'Visual gerbang yang tegas, modern, dan terasa mahal saat pertama dilihat.',
+    description:
+      'Kesan pertama rumah banyak ditentukan dari pagar dan gerbang. Karena itu, komposisi rangka, ritme bilah, dan finishing harus kelihatan matang sejak pandangan pertama.',
+    image: `${baseUrl}images/gate-hero.jpg`,
+    alt: 'Gerbang besi hitam pada rumah modern.',
+  },
+  {
+    category: 'Railing Balkon',
+    title: 'Railing yang aman dipakai, tapi tetap ringan secara visual di area atas rumah.',
+    description:
+      'Railing balkon yang bagus tidak hanya kuat, tetapi juga memberi kesan bersih dari kejauhan. Detail seperti tinggi railing dan pola sambungan sangat berpengaruh.',
+    image: `${baseUrl}images/railing-showcase.jpg`,
+    alt: 'Railing balkon besi hitam pada area luar rumah.',
+  },
+  {
+    category: 'Pintu Garasi',
+    title: 'Bidang pintu garasi yang rapi membuat fasad rumah terlihat lebih tertata.',
+    description:
+      'Untuk pintu garasi, orang biasanya mencari kombinasi antara keamanan, bukaan yang nyaman, dan tampilan yang tidak merusak desain bagian depan rumah.',
+    image: `${baseUrl}images/garage-showcase.jpg`,
+    alt: 'Pintu garasi sederhana pada area rumah.',
+  },
+]
+
+const projectFits = [
+  {
+    title: 'Rumah Baru',
+    description:
+      'Cocok untuk pemilik rumah yang ingin semua elemen besi tampil seragam dari gerbang sampai railing tangga.',
+  },
+  {
+    title: 'Renovasi Fasad',
+    description:
+      'Pas untuk rumah lama yang butuh wajah baru agar tampilan depan terasa lebih modern, bersih, dan meyakinkan.',
+  },
+  {
+    title: 'Kos, Ruko, dan Kantor',
+    description:
+      'Ideal untuk bangunan usaha yang butuh kombinasi visual profesional, keamanan, dan daya tahan penggunaan harian.',
+  },
+]
+
+const processSteps = [
+  {
+    title: 'Kirim Referensi atau Foto Lokasi',
+    description:
+      'Calon pelanggan bisa mulai dari kirim inspirasi model, ukuran kasar, atau foto bangunan agar arahnya cepat terbaca.',
+  },
+  {
+    title: 'Survey dan Ukur Lapangan',
+    description:
+      'Tahap ini penting supaya semua detail seperti tinggi, bukaan, kemiringan, dan titik pemasangan benar-benar pas.',
+  },
+  {
+    title: 'Produksi dengan Detail yang Rapi',
+    description:
+      'Rangka, sambungan, dan finishing dikerjakan agar hasil tidak terlihat asal jadi, terutama saat dilihat dari dekat.',
+  },
+  {
+    title: 'Pemasangan dan Finishing Akhir',
+    description:
+      'Setelah terpasang, hasil akhir disesuaikan lagi supaya terlihat solid, nyaman digunakan, dan enak dipandang.',
+  },
+]
+
+const faqs = [
+  {
+    question: 'Bagaimana memilih model pagar yang cocok untuk rumah?',
+    answer:
+      'Mulailah dari karakter rumah dan kebutuhan utamanya. Jika fokus Anda keamanan, pilih struktur yang kokoh dan ritme bilah yang rapat. Jika fokusnya tampilan, model pagar sebaiknya mengikuti garis fasad rumah agar hasilnya terlihat menyatu.',
+  },
+  {
+    question: 'Apa yang paling memengaruhi harga pengerjaan las?',
+    answer:
+      'Biasanya harga dipengaruhi ukuran area, jenis material, tingkat kerumitan desain, sistem bukaan, dan jenis finishing. Semakin detail model dan semakin besar bidang yang dikerjakan, biasanya waktu produksi dan biaya juga ikut bertambah.',
+  },
+  {
+    question: 'Finishing seperti apa yang cocok untuk area luar rumah?',
+    answer:
+      'Untuk area luar ruang, finishing harus mempertimbangkan panas, hujan, dan kelembapan. Karena itu pemilihan cat, lapisan pelindung, dan persiapan permukaan sebelum pengecatan sangat penting agar hasil lebih awet dan tetap enak dilihat.',
+  },
+  {
+    question: 'Apa yang sebaiknya disiapkan sebelum konsultasi?',
+    answer:
+      'Siapkan ukuran kasar, foto lokasi dari beberapa sudut, referensi model yang disukai, dan gambaran prioritas Anda. Dengan begitu proses diskusi akan lebih cepat dan rekomendasi desain bisa lebih tepat.',
+  },
+]
+
+const prepItems = [
+  'Ukuran kasar area yang akan dikerjakan',
+  'Foto lokasi dari beberapa sudut',
+  'Referensi model yang disukai',
+  'Budget atau prioritas kebutuhan utama',
+]
+
+const videoHighlights = [
+  'Perkenalan singkat usaha dan karakter pengerjaan',
+  'Suasana workshop dan proses fabrikasi',
+  'Cuplikan cinematic hasil proyek yang sedang dikerjakan',
+]
+
+const marqueeLoop = [...marqueeItems, ...marqueeItems]
+const pageDescription =
+  'Bengkel Las Lestari melayani pagar, canopy, railing, pintu garasi, dan fabrikasi. Patokan lokasi workshop mengarah ke Bengkel Las Dian Jaya di Jalan Jombang Raya.'
+---
+
+<BaseLayout
+  title="Lestari Las | Pagar, Canopy, Railing, dan Pintu Garasi"
+  description={pageDescription}
+>
+  <div class="site-shell">
+    <a class="floating-cta" href={whatsappLink} target="_blank" rel="noreferrer">
+      <svg
+        class="floating-cta-icon"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          fill="currentColor"
+          d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.46 3.44 1.32 4.95L2 22l5.32-1.39a9.86 9.86 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.82 9.82 0 0 0-2.89-7Zm-7.02 15.22h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.16.83.84-3.08-.2-.32a8.18 8.18 0 0 1-1.26-4.33c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.25.85 5.8 2.4a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.2 8.2Zm4.49-6.14c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1-.37-1.91-1.17-.7-.62-1.18-1.38-1.32-1.62-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.69 2.58 4.09 3.61.57.25 1.02.4 1.37.51.58.18 1.1.15 1.52.09.46-.07 1.43-.58 1.63-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"
+        ></path>
+      </svg>
+      Tanya via WhatsApp
+    </a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="Lestari Las">
+          <span class="brand-logo-shell">
+            <img class="brand-logo" src={brandLogo} alt="Logo Lestari Las" />
+          </span>
+          <span class="brand-meta">
+            <small>Pagar, canopy, railing, pintu garasi</small>
+          </span>
+        </a>
+
+        <nav class="site-nav" aria-label="Navigasi utama">
+          <a href="#services">Layanan</a>
+          <a href="#portfolio">Galeri</a>
+          <a href="#process">Proses</a>
+          <a href="#contact">Kontak</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-section" id="top">
+        <div class="container hero-grid">
+          <div class="hero-copy" data-reveal>
+            <p class="eyebrow">Spesialis Pagar, Canopy, Railing, dan Pintu Garasi Custom</p>
+            <h1>Solusi Las Custom untuk Rumah yang Ingin Tampil Lebih Rapi, Aman, dan Bernilai</h1>
+            <p class="hero-text">
+              Setiap rumah dan bangunan punya kebutuhan yang berbeda. Ada yang membutuhkan pagar
+              yang lebih aman, ada yang mencari canopy yang ringan tapi tetap kokoh, dan ada juga
+              yang ingin railing atau pintu garasi yang tampil serasi dengan fasad bangunan.
+            </p>
+            <p class="hero-subtext">
+              Karena itu pengerjaan las yang baik harus dimulai dari ukuran yang tepat, pilihan
+              material yang sesuai, sistem bukaan yang nyaman, dan finishing yang terlihat matang
+              saat dipakai setiap hari.
+            </p>
+
+            <div class="hero-actions">
+              <a class="button button-primary" href="#contact">Konsultasi Proyek</a>
+              <a class="button button-secondary" href="#portfolio">Lihat Galeri</a>
+            </div>
+
+            <ul class="hero-highlights" aria-label="Keunggulan utama">
+              {
+                highlights.map((item) => (
+                  <li>{item}</li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <div class="hero-visual-cluster">
+            <figure class="hero-media hero-media-primary" data-reveal style="--delay: 80ms;">
+              <img src={galleryItems[0].image} alt={galleryItems[0].alt} fetchpriority="high" />
+              <figcaption>
+                <span>Hero Visual</span>
+                <strong>Gerbang custom untuk fasad rumah yang ingin tampil lebih kuat.</strong>
+              </figcaption>
+            </figure>
+
+            <figure class="hero-media hero-media-secondary" data-reveal style="--delay: 180ms;">
+              <img src={galleryItems[1].image} alt={galleryItems[1].alt} loading="lazy" />
+              <figcaption>Railing balkon yang aman dan tetap ringan dilihat.</figcaption>
+            </figure>
+
+            <figure class="hero-media hero-media-tertiary" data-reveal style="--delay: 260ms;">
+              <img
+                src={`${baseUrl}images/exterior-showcase.jpg`}
+                alt="Eksterior rumah modern dengan pagar."
+                loading="lazy"
+              />
+              <figcaption>Nuansa rumah modern yang lebih clean dan premium.</figcaption>
+            </figure>
+
+            <aside class="hero-note-card" data-reveal style="--delay: 320ms;">
+              <p>Hal penting</p>
+              <h2>Produk las yang baik harus seimbang antara fungsi, keamanan, dan tampilan.</h2>
+              <span>Bukan hanya kuat, tetapi juga nyaman dipakai dan sedap dipandang.</span>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="marquee-section" aria-label="Marquee layanan">
+        <div class="marquee-track">
+          {
+            marqueeLoop.map((item) => (
+              <span>{item}</span>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="section video-section">
+        <div class="container video-layout">
+          <div class="video-copy" data-reveal>
+            <p class="section-kicker">Video Perkenalan</p>
+            <h2>Lihat gambaran singkat tentang suasana kerja dan karakter hasil Lestari Las.</h2>
+            <p>
+              Video ini cocok ditempatkan di awal supaya pengunjung tidak hanya membaca, tetapi
+              juga bisa langsung merasakan nuansa workshop, cara kerja, dan gaya proyek yang
+              dikerjakan. Buat bisnis seperti jasa las, sentuhan visual seperti ini membantu
+              kepercayaan tumbuh lebih cepat.
+            </p>
+
+            <div class="video-bullets" aria-label="Isi video">
+              {
+                videoHighlights.map((item) => (
+                  <article>
+                    <span></span>
+                    <p>{item}</p>
+                  </article>
+                ))
+              }
+            </div>
+          </div>
+
+          <div class="video-frame-shell" data-reveal style="--delay: 120ms;">
+            <div class="video-frame">
+              <iframe
+                src={youtubeEmbedUrl}
+                title="Video perkenalan dan cinematic proyek Lestari Las"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section story-section">
+        <div class="container story-layout">
+          <div class="story-copy" data-reveal>
+            <p class="section-kicker">Kenapa Harus Custom</p>
+            <h2>Setiap ukuran, bukaan, dan karakter bangunan butuh pendekatan yang berbeda.</h2>
+            <p>
+              Pagar untuk rumah sudut tentu berbeda dengan pagar untuk rumah mungil di area padat.
+              Canopy untuk carport juga tidak bisa disamakan dengan canopy untuk teras atau area
+              usaha. Karena itu pengerjaan custom penting agar hasil akhir benar-benar pas dengan
+              kebutuhan bangunan.
+            </p>
+            <p>
+              Dengan perencanaan yang tepat, tinggi railing bisa terasa aman, arah bukaan pintu
+              garasi bisa lebih nyaman, dan model pagar bisa tetap indah tanpa mengorbankan fungsi
+              dasar seperti keamanan dan kemudahan akses.
+            </p>
+          </div>
+
+          <article class="story-card" data-reveal style="--delay: 120ms;">
+            <img src={galleryItems[2].image} alt={galleryItems[2].alt} loading="lazy" />
+            <div class="story-card-body">
+              <p class="section-kicker">Spotlight Detail</p>
+              <h3>Pintu garasi yang rapi bisa langsung mengangkat tampilan depan rumah.</h3>
+              <p>
+                Visual yang bersih, ukuran yang pas, dan bukaan yang nyaman sering jadi pembeda
+                antara pengerjaan biasa dan hasil yang terasa lebih matang.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section services-section" id="services">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <p class="section-kicker">Layanan Utama</p>
+            <h2>Pilih jenis pengerjaan sesuai fungsi, kebutuhan ruang, dan tampilan bangunan Anda.</h2>
+            <p>
+              Setiap produk punya pertimbangan yang berbeda. Ada yang lebih fokus ke keamanan, ada
+              yang menekankan tampilan depan rumah, dan ada juga yang harus seimbang antara fungsi
+              pelindung, kenyamanan, dan visual.
+            </p>
+          </div>
+
+          <div class="services-grid">
+            {
+              services.map((service, index) => (
+                <article class="service-card" data-reveal style={`--delay: ${index * 90}ms;`}>
+                  <span class="service-index">0{index + 1}</span>
+                  <h3>{service.title}</h3>
+                  <p>{service.description}</p>
+                  <ul>
+                    {
+                      service.points.map((point) => (
+                        <li>{point}</li>
+                      ))
+                    }
+                  </ul>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="section cinematic-section">
+        <div class="container">
+          <article class="cinematic-panel" data-reveal>
+            <img
+              src={`${baseUrl}images/exterior-showcase.jpg`}
+              alt="Rumah modern dengan pagar dan area luar rapi."
+              loading="lazy"
+            />
+            <div class="cinematic-overlay">
+              <p class="section-kicker">Pertimbangan Desain</p>
+              <h2>
+                Elemen besi yang tepat bisa membuat tampilan bangunan terasa lebih rapi dan
+                berkelas.
+              </h2>
+              <p>
+                Pemilihan model, warna, dan komposisi bidang sebaiknya mengikuti bentuk rumah atau
+                bangunan, bukan sekadar ikut tren. Dengan begitu hasil akhirnya lebih menyatu dan
+                tidak cepat terasa ketinggalan.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section portfolio-section" id="portfolio">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <p class="section-kicker">Galeri Inspirasi</p>
+            <h2>
+              Tiap elemen besi punya fungsi yang berbeda, jadi modelnya pun perlu dipilih dengan
+              tepat.
+            </h2>
+            <p>
+              Bagian ini membantu Anda membayangkan arah desain yang sesuai, mulai dari pagar
+              depan, railing balkon, hingga pintu garasi yang ingin tetap aman tanpa merusak
+              karakter visual bangunan.
+            </p>
+          </div>
+
+          <div class="portfolio-grid">
+            {
+              galleryItems.map((item, index) => (
+                <article class="portfolio-card" data-reveal style={`--delay: ${index * 120}ms;`}>
+                  <div class="portfolio-image-wrap">
+                    <img src={item.image} alt={item.alt} loading="lazy" />
+                  </div>
+                  <div class="portfolio-content">
+                    <p>{item.category}</p>
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="section fit-section">
+        <div class="container fit-layout">
+          <div class="fit-copy" data-reveal>
+            <p class="section-kicker">Sering Dicari Untuk</p>
+            <h2>Kebutuhan proyek yang paling sering memerlukan pengerjaan las custom.</h2>
+            <p>
+              Mulai dari rumah baru, renovasi tampak depan, sampai bangunan usaha yang ingin
+              terlihat lebih tertata dan aman, pengerjaan custom membantu hasil akhir terasa lebih
+              pas dibanding solusi yang seragam.
+            </p>
+          </div>
+
+          <div class="fit-cards">
+            {
+              projectFits.map((item, index) => (
+                <article class="fit-card" data-reveal style={`--delay: ${index * 100}ms;`}>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="section process-section" id="process">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <p class="section-kicker">Alur Kerja</p>
+            <h2>Tahapan kerja yang jelas membantu hasil akhir lebih presisi dan minim revisi.</h2>
+          </div>
+
+          <div class="process-grid">
+            {
+              processSteps.map((step, index) => (
+                <article class="process-card" data-reveal style={`--delay: ${index * 90}ms;`}>
+                  <span class="process-number">0{index + 1}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="section faq-section">
+        <div class="container faq-layout">
+          <div class="faq-copy" data-reveal>
+            <p class="section-kicker">Pertanyaan Umum</p>
+            <h2>Beberapa hal yang sering ditanyakan sebelum memulai pengerjaan.</h2>
+            <p>
+              Memahami poin-poin dasar ini akan membantu Anda menentukan kebutuhan dengan lebih
+              jelas sebelum masuk ke tahap survey, pengukuran, dan penawaran harga.
+            </p>
+          </div>
+
+          <div class="faq-list">
+            {
+              faqs.map((faq, index) => (
+                <details data-reveal style={`--delay: ${index * 80}ms;`}>
+                  <summary>{faq.question}</summary>
+                  <p>{faq.answer}</p>
+                </details>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact">
+        <div class="container contact-card" data-reveal>
+          <div class="contact-copy">
+            <p class="section-kicker">Kontak & Lokasi</p>
+            <h2>
+              Bengkel Las Lestari siap melayani kebutuhan las dan fabrikasi untuk rumah maupun
+              bangunan usaha.
+            </h2>
+            <p>
+              Jika ingin berdiskusi soal pagar, canopy, railing, atau pintu garasi, Anda bisa
+              langsung hubungi kami via WhatsApp atau datang ke workshop untuk melihat lokasi dan
+              berkonsultasi lebih lanjut.
+            </p>
+          </div>
+
+          <div class="contact-actions">
+            <a class="button button-primary" href={whatsappLink} target="_blank" rel="noreferrer">
+              Tanya via WhatsApp
+            </a>
+            <a class="button button-secondary" href={locationLink} target="_blank" rel="noreferrer">
+              Buka Lokasi
+            </a>
+          </div>
+
+          <div class="contact-info-grid">
+            <article class="location-card" data-reveal style="--delay: 80ms;">
+              <p class="section-kicker">Patokan Google Maps</p>
+              <h3>Bengkel Las Dian Jaya</h3>
+              <p class="location-copy">
+                Titik map workshop mengarah ke Bengkel Las Dian Jaya di Jalan Jombang Raya No.10,
+                Pondok Aren, Kota Tangerang Selatan. Lokasinya berada di area Jombang Raya dan
+                bisa dijadikan patokan saat berkunjung ke workshop.
+              </p>
+              <div class="location-note">
+                <strong>Patokan lokasi</strong>
+                <span>
+                  Gunakan titik Bengkel Las Dian Jaya saat buka Maps agar arahnya lebih tepat.
+                </span>
+              </div>
+            </article>
+
+            <div class="prep-list" aria-label="Data awal sebelum konsultasi">
+              {
+                prepItems.map((item, index) => (
+                  <article data-reveal style={`--delay: ${index * 70}ms;`}>
+                    <span>0{index + 1}</span>
+                    <p>{item}</p>
+                  </article>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="footer-map-section">
+        <div class="container">
+          <div class="footer-map-card" data-reveal>
+            <div class="footer-map-copy">
+              <p class="section-kicker">Lokasi Bengkel</p>
+              <h2>Workshop bisa dicek langsung lewat titik map Bengkel Las Dian Jaya.</h2>
+              <p>
+                Gunakan peta di bawah ini untuk melihat arah, memperkirakan jarak tempuh, dan
+                memastikan patokan lokasi sebelum datang ke workshop.
+              </p>
+            </div>
+
+            <div class="footer-map-frame">
+              <iframe
+                src={mapEmbedUrl}
+                title="Peta lokasi Bengkel Las Dian Jaya"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>Lestari Las. Solusi las custom untuk pagar, canopy, railing, dan pintu garasi.</p>
+        <a href="#top">Kembali ke atas</a>
+      </div>
+    </footer>
+  </div>
+</BaseLayout>

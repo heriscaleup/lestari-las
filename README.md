@@ -2,6 +2,8 @@
 
 Landing page modern untuk bengkel las yang melayani pembuatan pagar, railing balkon, canopy, railing tangga, dan pintu garasi.
 
+Project ini sekarang menggunakan Astro agar hasil build lebih ringan, HTML lebih bersih, dan lebih cocok untuk landing page statis seperti company profile bengkel las.
+
 ## Jalankan Lokal
 
 ```bash
@@ -24,7 +26,7 @@ Catatan final sebelum go live:
 - Ganti nomor WhatsApp dan kontak bisnis asli
 - Tambahkan area layanan yang spesifik
 - Masukkan foto proyek asli pada section showcase atau portfolio
-- Jika nama repo berubah, sesuaikan nilai `base` di `vite.config.js`
+- Jika nama repo berubah, sesuaikan nilai `base` di `astro.config.mjs`
 
 ## Sumber Gambar Sementara
 
