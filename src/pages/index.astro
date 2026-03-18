@@ -197,7 +197,14 @@ const pageDescription =
   description={pageDescription}
 >
   <div class="site-shell">
-    <a class="floating-cta" href={whatsappLink} target="_blank" rel="noreferrer">
+    <a
+      class="floating-cta"
+      href={whatsappLink}
+      target="_blank"
+      rel="noreferrer"
+      data-track-whatsapp
+      data-whatsapp-placement="floating-cta"
+    >
       <svg
         class="floating-cta-icon"
         viewBox="0 0 24 24"
@@ -553,7 +560,14 @@ const pageDescription =
           </div>
 
           <div class="contact-actions">
-            <a class="button button-primary" href={whatsappLink} target="_blank" rel="noreferrer">
+            <a
+              class="button button-primary"
+              href={whatsappLink}
+              target="_blank"
+              rel="noreferrer"
+              data-track-whatsapp
+              data-whatsapp-placement="contact-section"
+            >
               Tanya via WhatsApp
             </a>
             <a class="button button-secondary" href={locationLink} target="_blank" rel="noreferrer">
