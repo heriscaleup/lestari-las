@@ -33,6 +33,5 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          # Jika root direktori FTP kamu langsung mengarah ke public_html atau root, 
-          # kamu mungkin perlu menyesuaikan server-dir ini (contoh: /bengkel-las.com/ atau /)
-          server-dir: /bengkel-las.com/
+          # Deploy langsung ke folder utama FTP
+          server-dir: /
