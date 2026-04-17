@@ -1,0 +1,401 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro'
+
+const basePath = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`
+
+const WA   = 'https://wa.me/6282113114498?text=Halo%20Lestari%20Las,%20saya%20mau%20tanya%20tentang%20jasa%20teralis%20dan%20railing.'
+const MAPS = 'https://maps.app.goo.gl/tUtmmHC4YYtszHC3A'
+const MAP_EMBED = 'https://www.google.com/maps?q=-6.2822222,106.7025833&z=18&output=embed'
+
+const title       = 'Jasa Teralis Jendela & Railing Tangga Bintaro – Lestari Las'
+const description = 'Jasa pemasangan teralis jendela minimalis anti maling dan railing tangga custom di Bintaro, Tangerang Selatan. Material besi dan stainless, survey gratis, desain custom oleh Lestari Las.'
+const canonical   = 'https://bengkel-las.com/teralis-railing'
+const ogImage     = 'https://bengkel-las.com/images/railing-showcase.jpg'
+
+const services = [
+  { n:'01', title:'Teralis Jendela',
+    desc:'Teralis besi atau stainless dengan desain minimalis — memberikan keamanan tanpa membuat fasad rumah terlihat berat atau kotor.',
+    pts:['Model vertikal, horizontal, atau grid','Ukuran mengikuti dimensi jendela','Finishing cat atau stainless polish'] },
+  { n:'02', title:'Railing Tangga Indoor',
+    desc:'Railing tangga dalam rumah yang aman setiap hari dan menyatu dengan interior. Tersedia besi hollow, solid, maupun stainless steel.',
+    pts:['Desain simpel atau ornamen','Ketinggian sesuai standar keamanan','Finishing matte atau glossy'] },
+  { n:'03', title:'Railing Balkon Stainless',
+    desc:'Railing balkon outdoor tahan cuaca. Stainless lebih tahan korosi dan sedikit memerlukan perawatan dibanding besi biasa.',
+    pts:['Stainless grade 304 tahan karat','Ringan secara visual, kuat secara struktur','Cocok untuk balkon dan area basah'] },
+]
+
+const process = [
+  { n:'01', t:'Kirim Foto & Ukuran',       d:'Foto jendela atau area tangga dari beberapa sudut sudah cukup untuk memulai diskusi dan estimasi awal.' },
+  { n:'02', t:'Survey & Ukur ke Lokasi',   d:'Tim datang gratis untuk mengukur dimensi jendela, tinggi tangga, dan kondisi dinding tempat pemasangan.' },
+  { n:'03', t:'Fabrikasi di Workshop',     d:'Teralis atau railing diproduksi sesuai ukuran hasil survey. Setiap potongan dicek agar presisi.' },
+  { n:'04', t:'Pemasangan & Finishing',    d:'Dipasang langsung di lokasi. Titik bor dan pengikat disesuaikan dengan material dinding agar terpasang kokoh.' },
+]
+
+const faqs = [
+  { q:'Berapa harga pasang teralis jendela per lubang?',
+    a:'Harga biasanya dihitung per m² atau per unit jendela, tergantung ukuran dan model. Untuk jendela ukuran standar 80×120 cm, estimasi mulai dari Rp 350.000–600.000 per unit. Hubungi kami untuk survey gratis dan penawaran yang lebih akurat.' },
+  { q:'Apa perbedaan teralis besi dan teralis stainless?',
+    a:'Teralis besi lebih murah dan mudah dibentuk untuk model khusus, tetapi perlu dicat ulang secara berkala untuk mencegah karat. Teralis stainless lebih tahan korosi, tampilan lebih bersih dan modern, tetapi harganya lebih tinggi. Untuk area basah atau outdoor, stainless lebih disarankan.' },
+  { q:'Apakah railing tangga bisa dibuat untuk rumah minimalis modern?',
+    a:'Tentu. Railing tangga bisa dibuat dengan profil tipis, jarak bilah teratur, dan finishing matte hitam — cocok untuk interior minimalis modern. Kami bisa menyesuaikan desain berdasarkan referensi foto yang Anda berikan.' },
+  { q:'Seberapa kuat teralis jendela untuk keamanan?',
+    a:'Kekuatan teralis bergantung pada ketebalan besi, jarak bilah, dan kualitas titik pengikat ke dinding. Kami menggunakan besi minimal 12–16 mm dan sistem fisher bolt ke tembok. Untuk keamanan maksimal, jarak antar bilah disarankan tidak lebih dari 12 cm.' },
+  { q:'Berapa lama pengerjaan teralis untuk satu rumah?',
+    a:'Untuk rumah dengan 4–6 jendela, produksi dan pemasangan biasanya selesai dalam 2–3 hari kerja setelah survey. Jika dikombinasikan dengan railing tangga, perkiraan waktu 3–5 hari kerja. Jadwal dapat berubah tergantung antrean dan ketersediaan material.' },
+]
+
+const areas = ['Bintaro','Ciledug','Tangerang Selatan','Pesanggrahan','Kebayoran Lama','Ciputat','Pondok Aren','Serpong']
+
+const jsonLd = {
+  '@context':'https://schema.org',
+  '@graph':[
+    { '@type':'BreadcrumbList', itemListElement:[
+      { '@type':'ListItem', position:1, name:'Beranda', item:'https://bengkel-las.com/' },
+      { '@type':'ListItem', position:2, name:'Teralis & Railing', item:canonical },
+    ]},
+    { '@type':'LocalBusiness', '@id':'https://bengkel-las.com/#business',
+      name:'Lestari Las', description, url:'https://bengkel-las.com/',
+      telephone:'+6282113114498',
+      address:{ '@type':'PostalAddress', streetAddress:'Jln Jombang Ciledug, depan Ruko Emerald Bintaro No. 7', addressLocality:'Tangerang Selatan', addressRegion:'Banten', addressCountry:'ID' },
+      geo:{ '@type':'GeoCoordinates', latitude:-6.2822222, longitude:106.7025833 },
+      areaServed: areas.map(a=>({ '@type':'City', name:a })),
+    },
+    { '@type':'Service', name:'Jasa Teralis Jendela dan Railing Tangga Custom', provider:{ '@id':'https://bengkel-las.com/#business' }, areaServed:'Tangerang Selatan', description },
+    { '@type':'FAQPage', mainEntity: faqs.map(f=>({ '@type':'Question', name:f.q, acceptedAnswer:{ '@type':'Answer', text:f.a } })) },
+  ],
+}
+---
+
+<LandingLayout {title} {description} {canonical} {ogImage}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
+  <!-- ANNOUNCE BAR -->
+  <div class="lp-announce">
+    <div class="lp-announce-inner">
+      <span>📍 Workshop: Jln Jombang Ciledug, Bintaro</span>
+      <span class="lp-divider">|</span>
+      <span>📞 <a href="tel:+6282113114498">0821-1311-4498</a></span>
+      <span class="lp-divider">|</span>
+      <span>✅ Survey &amp; Estimasi Gratis</span>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="lp-header" id="top">
+    <div class="container lp-header-inner">
+      <a class="lp-brand" href="/" aria-label="Lestari Las">
+        <img src={`${basePath}brand/lestari-las-logo.webp`} alt="Logo Lestari Las" width="52" height="52" />
+        <span class="lp-brand-text">
+          <strong>Lestari Las</strong>
+          <small>Bintaro &amp; Tangerang Selatan</small>
+        </span>
+      </a>
+      <nav class="lp-nav" aria-label="Navigasi halaman teralis railing">
+        <a href="#layanan">Layanan</a>
+        <a href="#proses">Proses</a>
+        <a href="#faq">FAQ</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+      <a class="lp-header-cta" href={WA} target="_blank" rel="noreferrer"
+        data-track-whatsapp="true" data-whatsapp-placement="header-cta">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.46 3.44 1.32 4.95L2 22l5.32-1.39a9.86 9.86 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.82 9.82 0 0 0-2.89-7Z"/>
+        </svg>
+        Hubungi WA
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- BREADCRUMB -->
+    <nav class="container lp-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Beranda</a></li>
+        <li aria-current="page">Teralis &amp; Railing Tangga</li>
+      </ol>
+    </nav>
+
+    <!-- HERO -->
+    <section class="lp-hero">
+      <div class="lp-hero-bg" style={`background-image:url(${basePath}images/railing-showcase.jpg)`} aria-hidden="true"></div>
+      <div class="lp-hero-overlay" aria-hidden="true"></div>
+      <div class="container lp-hero-content">
+        <div class="lp-hero-copy" data-reveal>
+          <p class="lp-eyebrow">Teralis Jendela &amp; Railing Tangga — Bintaro</p>
+          <h1>
+            Teralis Jendela<br />
+            <mark>Anti Maling</mark><br />
+            &amp; Railing Tangga
+          </h1>
+          <p class="lp-lead">
+            Teralis yang aman tanpa membuat rumah terlihat seperti penjara. Railing tangga
+            yang kuat dan menyatu dengan interior. Desain custom, ukuran presisi, material
+            besi dan stainless — langsung oleh tim Lestari Las.
+          </p>
+          <div class="lp-hero-actions">
+            <a class="lp-btn-wa" href={WA} target="_blank" rel="noreferrer"
+              data-track-whatsapp="true" data-whatsapp-placement="hero-cta">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.46 3.44 1.32 4.95L2 22l5.32-1.39a9.86 9.86 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.82 9.82 0 0 0-2.89-7Z"/>
+              </svg>
+              Konsultasi Gratis via WA
+            </a>
+            <a class="lp-btn-ghost" href="#layanan">Lihat Jenis Layanan ↓</a>
+          </div>
+        </div>
+        <div class="lp-hero-stats" data-reveal style="--delay:200ms;">
+          <div class="lp-stat-card"><strong>Custom</strong><span>Per Ukuran</span></div>
+          <div class="lp-stat-card"><strong>Gratis</strong><span>Survey Lokasi</span></div>
+          <div class="lp-stat-card">
+            <strong><span data-count-to="100" data-count-suffix="+">0+</span></strong>
+            <span>Unit Terpasang</span>
+          </div>
+          <div class="lp-stat-card"><strong>Garansi</strong><span>Pemasangan</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="lp-marquee-wrap" aria-hidden="true">
+      <ul class="lp-marquee">
+        {['Teralis Jendela','Railing Tangga','Railing Balkon','Stainless Steel',
+          'Anti Maling','Survey Gratis','Desain Custom','Pengerjaan Rapi',
+          'Teralis Jendela','Railing Tangga','Railing Balkon','Stainless Steel',
+          'Anti Maling','Survey Gratis','Desain Custom','Pengerjaan Rapi'].map(t=>(
+          <li><span>{t}</span></li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- LAYANAN -->
+    <section class="lp-section" id="layanan">
+      <div class="container">
+        <header class="lp-section-head" data-reveal>
+          <p class="lp-kicker">Jenis Layanan</p>
+          <h2>Teralis jendela dan railing tangga custom untuk keamanan dan estetika rumah.</h2>
+          <p>
+            Material, jarak bilah, dan model disesuaikan dengan kebutuhan area — apakah untuk
+            keamanan jendela, kenyamanan railing indoor, atau railing balkon outdoor tahan cuaca.
+          </p>
+        </header>
+        <div class="lp-cards-3">
+          {services.map((s, i) => (
+            <article class="lp-card" data-reveal style={`--delay:${i * 100}ms;`}>
+              <span class="lp-card-num">{s.n}</span>
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
+              <ul class="lp-card-list">
+                {s.pts.map(pt => <li>{pt}</li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- USP -->
+    <div class="lp-usp-strip">
+      <div class="container lp-usp-grid">
+        {[
+          { icon:'🔍', t:'Survey Gratis', d:'Tim datang ke lokasi untuk ukur jendela, tangga, dan kondisi dinding tempat pemasangan.' },
+          { icon:'⚙️', t:'Besi & Stainless', d:'Pilihan sesuai anggaran dan lokasi — besi untuk indoor, stainless untuk outdoor dan area basah.' },
+          { icon:'📐', t:'Ukuran Presisi', d:'Setiap unit dibuat sesuai ukuran hasil ukur lapangan — bukan produk generik yang dipotong di tempat.' },
+          { icon:'🔩', t:'Pemasangan Kuat', d:'Fisher bolt dan angkur disesuaikan material dinding agar terpasang kokoh dan tidak goyang.' },
+        ].map((u, i) => (
+          <div class="lp-usp-item" data-reveal style={`--delay:${i * 80}ms;`}>
+            <span class="lp-usp-icon">{u.icon}</span>
+            <h3>{u.t}</h3>
+            <p>{u.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- PROSES -->
+    <section class="lp-section" id="proses">
+      <div class="container">
+        <header class="lp-section-head" data-reveal>
+          <p class="lp-kicker">Alur Pengerjaan</p>
+          <h2>Empat tahap untuk teralis dan railing yang presisi dan tahan lama.</h2>
+        </header>
+        <div class="lp-process-track">
+          {process.map((p, i) => (
+            <div class="lp-process-step" data-reveal style={`--delay:${i * 110}ms;`}>
+              <div class="lp-process-num">{p.n}</div>
+              <div class="lp-process-body"><h3>{p.t}</h3><p>{p.d}</p></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="lp-section lp-pricing-section">
+      <div class="container">
+        <header class="lp-section-head" data-reveal>
+          <p class="lp-kicker">Estimasi Harga</p>
+          <h2>Kisaran harga sebagai gambaran awal sebelum survey.</h2>
+          <p>Harga final ditentukan setelah survey lokasi — tergantung ukuran jendela, model teralis, dan material.</p>
+        </header>
+        <div class="lp-pricing-grid">
+          {[
+            { label:'Teralis Jendela Besi', size:'Per unit jendela', range:'Rp 350 – 600 rb', note:'Ukuran standar 80×120 cm' },
+            { label:'Teralis Paket Rumah', size:'4–6 jendela', range:'Rp 2 – 4 jt', note:'Paket ekonomis per rumah', popular:true },
+            { label:'Railing Tangga Stainless', size:'Per meter lari', range:'Rp 600 rb – 1,2 jt/m', note:'Tergantung profil dan model' },
+          ].map((p, i) => (
+            <div class={`lp-price-card${p.popular ? ' lp-price-popular' : ''}`} data-reveal style={`--delay:${i * 100}ms;`}>
+              {p.popular && <span class="lp-popular-badge">Terpopuler</span>}
+              <h3>{p.label}</h3>
+              <p class="lp-price-size">{p.size}</p>
+              <p class="lp-price-range">{p.range}</p>
+              <p class="lp-price-note">{p.note}</p>
+            </div>
+          ))}
+        </div>
+        <p class="lp-pricing-cta-hint" data-reveal>
+          Ingin estimasi yang lebih akurat?&nbsp;
+          <a href={WA} target="_blank" rel="noreferrer"
+            data-track-whatsapp="true" data-whatsapp-placement="pricing-cta">
+            Hubungi kami via WhatsApp →
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="lp-section" id="faq">
+      <div class="container lp-faq-layout">
+        <div class="lp-faq-copy" data-reveal>
+          <p class="lp-kicker">FAQ</p>
+          <h2>Hal yang sering ditanyakan tentang teralis dan railing.</h2>
+          <p>Informasi harga, perbandingan material, dan waktu pengerjaan — sebelum menghubungi kami.</p>
+          <a class="lp-btn-wa lp-btn-wa--sm" href={WA} target="_blank" rel="noreferrer"
+            data-track-whatsapp="true" data-whatsapp-placement="faq-cta"
+            style="margin-top:24px;">
+            Tanya Langsung via WA
+          </a>
+        </div>
+        <div class="fm-faq lp-faq-list">
+          {faqs.map((f, i) => (
+            <details data-reveal style={`--delay:${i * 60}ms;`}>
+              <summary>{f.q}</summary>
+              <div class="fm-faq-body"><p>{f.a}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- AREA -->
+    <section class="lp-section lp-area-section">
+      <div class="container" data-reveal>
+        <p class="lp-kicker">Area Layanan</p>
+        <h2 class="lp-area-h">Jasa teralis dan railing tersedia di Bintaro dan sekitarnya.</h2>
+        <ul class="lp-area-chips">
+          {areas.map(a => <li>{a}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <!-- INTERNAL LINKS -->
+    <section class="lp-section lp-links-section">
+      <div class="container">
+        <p class="lp-kicker" data-reveal>Layanan Lainnya</p>
+        <div class="lp-links-grid">
+          {[
+            { href:'/kanopi',    title:'Kanopi Baja Ringan',       desc:'Kanopi carport dan teras — baja ringan, survey gratis, desain custom.' },
+            { href:'/pagar-besi', title:'Pagar Besi & Pintu Pagar', desc:'Pagar minimalis, pintu pagar swing, dan pintu lipat besi custom.' },
+            { href:'/',          title:'Semua Layanan Las',          desc:'Pagar, kanopi, railing, dan pintu garasi — bengkel Lestari Las Bintaro.' },
+          ].map((l, i) => (
+            <a class="lp-link-card" href={l.href} data-reveal style={`--delay:${i * 80}ms;`}>
+              <span class="lp-link-arrow">→</span>
+              <h3>{l.title}</h3>
+              <p>{l.desc}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="lp-cta-section" id="kontak">
+      <div class="container lp-cta-inner" data-reveal>
+        <div class="lp-cta-copy">
+          <p class="lp-kicker">Siap Pasang Teralis?</p>
+          <h2>Konsultasi gratis — kirim foto jendela atau area tangga Anda.</h2>
+          <p>Tim Lestari Las akan bantu tentukan desain dan estimasi harga yang sesuai kondisi lapangan.</p>
+        </div>
+        <div class="lp-cta-actions">
+          <a class="lp-btn-wa lp-btn-wa--lg" href={WA} target="_blank" rel="noreferrer"
+            data-track-whatsapp="true" data-whatsapp-placement="cta-section">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.46 3.44 1.32 4.95L2 22l5.32-1.39a9.86 9.86 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.82 9.82 0 0 0-2.89-7Z"/>
+            </svg>
+            WhatsApp Sekarang
+          </a>
+          <a class="lp-btn-outline" href={MAPS} target="_blank" rel="noreferrer">📍 Buka Lokasi Workshop</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP -->
+    <section class="lp-map-section">
+      <div class="container lp-map-grid">
+        <div class="lp-map-copy" data-reveal>
+          <p class="lp-kicker">Lokasi Workshop</p>
+          <h2>Lestari Las — Bintaro</h2>
+          <p>Jln Jombang Ciledug, depan Ruko Emerald Bintaro No. 7, sekitar 100 meter dari Apartemen Embarcadero.</p>
+          <div class="lp-contact-list">
+            <a href="tel:+6282113114498" class="lp-contact-item"><span>📞</span> 0821-1311-4498</a>
+            <a href={WA} target="_blank" rel="noreferrer" class="lp-contact-item"
+              data-track-whatsapp="true" data-whatsapp-placement="map-section">
+              <span>💬</span> WhatsApp Sekarang
+            </a>
+            <a href={MAPS} target="_blank" rel="noreferrer" class="lp-contact-item"><span>📍</span> Buka Google Maps</a>
+          </div>
+        </div>
+        <div class="lp-map-frame" data-reveal style="--delay:120ms;">
+          <iframe src={MAP_EMBED} title="Peta workshop Lestari Las Bintaro"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="lp-footer">
+    <div class="container lp-footer-inner">
+      <div class="lp-footer-brand">
+        <img src={`${basePath}brand/lestari-las-logo.webp`} alt="Logo Lestari Las" width="40" height="40" />
+        <span>Lestari Las</span>
+      </div>
+      <p class="lp-footer-copy">
+        Jasa teralis jendela, railing tangga, pagar besi, dan kanopi baja ringan di Bintaro &amp; Tangerang Selatan.
+      </p>
+      <nav class="lp-footer-nav">
+        <a href="/kanopi">Kanopi</a>
+        <a href="/pagar-besi">Pagar Besi</a>
+        <a href="/teralis-railing">Teralis &amp; Railing</a>
+        <a href="/">Beranda</a>
+      </nav>
+      <p class="lp-footer-legal">
+        © {new Date().getFullYear()} Lestari Las &mdash; All rights reserved.
+        <a href="#top">↑ Kembali ke atas</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- FAB -->
+  <a class="lp-fab" href={WA} target="_blank" rel="noreferrer" aria-label="Hubungi via WhatsApp"
+    data-track-whatsapp="true" data-whatsapp-placement="floating-fab">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.46 3.44 1.32 4.95L2 22l5.32-1.39a9.86 9.86 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.82 9.82 0 0 0-2.89-7Z"/>
+    </svg>
+    <span>Hubungi WA</span>
+  </a>
+
+</LandingLayout>

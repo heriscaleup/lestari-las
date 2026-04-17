@@ -1,0 +1,412 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro'
+
+const basePath = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`
+
+const WA   = 'https://wa.me/6282113114498?text=Halo%20Lestari%20Las,%20saya%20mau%20tanya%20tentang%20jasa%20pagar%20besi.'
+const MAPS = 'https://maps.app.goo.gl/tUtmmHC4YYtszHC3A'
+const MAP_EMBED = 'https://www.google.com/maps?q=-6.2822222,106.7025833&z=18&output=embed'
+
+const title       = 'Jasa Pagar Besi Minimalis, Pintu Pagar & Pintu Lipat Bintaro – Lestari Las'
+const description = 'Jasa pembuatan pagar besi minimalis, pintu pagar swing, dan pintu lipat besi di Bintaro, Tangerang Selatan, Ciledug. Desain custom, survey gratis, pengerjaan rapi oleh Lestari Las.'
+const canonical   = 'https://bengkel-las.com/pagar-besi'
+const ogImage     = 'https://bengkel-las.com/images/gate-hero.jpg'
+
+const services = [
+  { n:'01', title:'Pagar Besi Minimalis',
+    desc:'Pagar rumah dengan bilah besi yang tersusun rapi — memadukan keamanan dengan tampilan fasad yang bersih dan modern.',
+    pts:['Model minimalis hingga klasik','Material hollow galvanis atau besi solid','Finishing cat anti karat'] },
+  { n:'02', title:'Pintu Pagar Swing',
+    desc:'Pintu satu atau dua daun dengan sistem buka swing. Pilihan paling umum untuk rumah tinggal — serasi dengan pagar, bukaan nyaman.',
+    pts:['Satu atau dua daun sesuai lebar akses','Engsel kuat tahan beban','Bisa dilengkapi kunci dan handle'] },
+  { n:'03', title:'Pintu Lipat Besi',
+    desc:'Hemat ruang bukaan, cocok untuk garasi sempit. Pintu lipat besi menghemat area dan tetap terlihat rapi saat terlipat ke samping.',
+    pts:['Hemat ruang untuk garasi sempit','Rel atas atau bawah sesuai kebutuhan','Lipatan stabil saat dibuka penuh'] },
+  { n:'04', title:'Pagar Custom',
+    desc:'Untuk bangunan dengan ukuran tidak standar atau desain khusus. Pagar dibuat sesuai gambar dan kondisi lapangan hasil survey.',
+    pts:['Ukuran dari hasil ukur lapangan','Model bebas sesuai keinginan','Tersedia motif dan ornamen'] },
+]
+
+const process = [
+  { n:'01', t:'Konsultasi & Kirim Referensi', d:'Kirim foto pagar yang disukai dan ukuran kasar area via WhatsApp untuk mendapatkan gambaran dan estimasi awal.' },
+  { n:'02', t:'Survey & Ukur Lapangan',       d:'Tim datang gratis untuk mengukur panjang, tinggi, kondisi pondasi, dan titik pemasangan agar hasilnya presisi.' },
+  { n:'03', t:'Fabrikasi di Workshop',         d:'Rangka, bilah, dan pintu diproduksi di workshop. Semua sambungan las diperiksa sebelum pengecatan akhir.' },
+  { n:'04', t:'Pemasangan & Finishing',        d:'Pagar dan pintu dipasang di lokasi. Finishing cat terakhir dilakukan di tempat untuk hasil terbaik.' },
+]
+
+const faqs = [
+  { q:'Berapa harga pasang pagar besi minimalis per meter?',
+    a:'Harga bervariasi tergantung model, tinggi, dan ketebalan material. Untuk model minimalis standar, estimasi mulai dari Rp 400.000–800.000 per meter. Harga final ditentukan setelah survey dan bergantung pada detail desain yang dipilih.' },
+  { q:'Apa perbedaan pagar besi hollow dan besi solid?',
+    a:'Besi hollow lebih ringan dan mudah dibentuk untuk model minimalis modern. Besi solid lebih berat dan terasa lebih kokoh secara fisik. Untuk pagar rumah tinggal, hollow galvanis sudah cukup kuat jika dikombinasikan dengan rangka yang baik.' },
+  { q:'Apakah pintu pagar bisa dibuat otomatis?',
+    a:'Bisa. Kami menyediakan pintu pagar yang siap dipasang motor otomatis dari pihak ketiga. Konstruksi dan ukuran pintu disesuaikan dengan spesifikasi motor. Informasikan saat konsultasi agar desain pintu sesuai.' },
+  { q:'Berapa lama pengerjaan pagar besi untuk rumah standar?',
+    a:'Untuk pagar rumah tinggal ukuran 10–15 meter beserta pintu pagar, biasanya selesai dalam 3–5 hari kerja setelah survey dan DP. Ukuran lebih besar atau desain lebih kompleks memerlukan waktu lebih lama.' },
+  { q:'Finishing cat seperti apa yang cocok untuk pagar luar ruang?',
+    a:'Kami menggunakan cat alkyd atau epoxy dengan primer anti karat sebelum lapisan akhir. Warna hitam doff paling populer untuk tampilan minimalis. Persiapan permukaan yang baik (amplas/primer) membuat cat tahan lebih lama.' },
+]
+
+const areas = ['Bintaro','Ciledug','Tangerang Selatan','Pesanggrahan','Kebayoran Lama','Ciputat','Pondok Aren','Serpong']
+
+const jsonLd = {
+  '@context':'https://schema.org',
+  '@graph':[
+    { '@type':'BreadcrumbList', itemListElement:[
+      { '@type':'ListItem', position:1, name:'Beranda', item:'https://bengkel-las.com/' },
+      { '@type':'ListItem', position:2, name:'Pagar Besi & Pintu Pagar', item:canonical },
+    ]},
+    { '@type':'LocalBusiness', '@id':'https://bengkel-las.com/#business',
+      name:'Lestari Las', description, url:'https://bengkel-las.com/',
+      telephone:'+6282113114498',
+      address:{ '@type':'PostalAddress', streetAddress:'Jln Jombang Ciledug, depan Ruko Emerald Bintaro No. 7', addressLocality:'Tangerang Selatan', addressRegion:'Banten', addressCountry:'ID' },
+      geo:{ '@type':'GeoCoordinates', latitude:-6.2822222, longitude:106.7025833 },
+      areaServed: areas.map(a=>({ '@type':'City', name:a })),
+    },
+    { '@type':'Service', name:'Jasa Pagar Besi Minimalis dan Pintu Pagar Custom', provider:{ '@id':'https://bengkel-las.com/#business' }, areaServed:'Tangerang Selatan', description },
+    { '@type':'FAQPage', mainEntity: faqs.map(f=>({ '@type':'Question', name:f.q, acceptedAnswer:{ '@type':'Answer', text:f.a } })) },
+  ],
+}
+---
+
+<LandingLayout {title} {description} {canonical} {ogImage}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
+  <!-- ANNOUNCE BAR -->
+  <div class="lp-announce">
+    <div class="lp-announce-inner">
+      <span>📍 Workshop: Jln Jombang Ciledug, Bintaro</span>
+      <span class="lp-divider">|</span>
+      <span>📞 <a href="tel:+6282113114498">0821-1311-4498</a></span>
+      <span class="lp-divider">|</span>
+      <span>✅ Survey &amp; Estimasi Gratis</span>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="lp-header" id="top">
+    <div class="container lp-header-inner">
+      <a class="lp-brand" href="/" aria-label="Lestari Las">
+        <img src={`${basePath}brand/lestari-las-logo.webp`} alt="Logo Lestari Las" width="52" height="52" />
+        <span class="lp-brand-text">
+          <strong>Lestari Las</strong>
+          <small>Bintaro &amp; Tangerang Selatan</small>
+        </span>
+      </a>
+      <nav class="lp-nav" aria-label="Navigasi halaman pagar besi">
+        <a href="#layanan">Layanan</a>
+        <a href="#proses">Proses</a>
+        <a href="#faq">FAQ</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+      <a class="lp-header-cta" href={WA} target="_blank" rel="noreferrer"
+        data-track-whatsapp="true" data-whatsapp-placement="header-cta">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.46 3.44 1.32 4.95L2 22l5.32-1.39a9.86 9.86 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.82 9.82 0 0 0-2.89-7Z"/>
+        </svg>
+        Hubungi WA
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- BREADCRUMB -->
+    <nav class="container lp-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Beranda</a></li>
+        <li aria-current="page">Pagar Besi &amp; Pintu Pagar</li>
+      </ol>
+    </nav>
+
+    <!-- HERO -->
+    <section class="lp-hero">
+      <div class="lp-hero-bg" style={`background-image:url(${basePath}images/gate-hero.jpg)`} aria-hidden="true"></div>
+      <div class="lp-hero-overlay" aria-hidden="true"></div>
+      <div class="container lp-hero-content">
+        <div class="lp-hero-copy" data-reveal>
+          <p class="lp-eyebrow">Pagar Besi &amp; Pintu Pagar — Bintaro &amp; Tangerang</p>
+          <h1>
+            Pagar Besi<br />
+            <mark>Minimalis</mark><br />
+            &amp; Pintu Pagar
+          </h1>
+          <p class="lp-lead">
+            Pagar dan pintu pagar yang rapi adalah hal pertama yang terlihat orang saat
+            mendekati rumah Anda. Desain custom, ukuran presisi hasil survey, material
+            anti karat — langsung oleh tim Lestari Las.
+          </p>
+          <div class="lp-hero-actions">
+            <a class="lp-btn-wa" href={WA} target="_blank" rel="noreferrer"
+              data-track-whatsapp="true" data-whatsapp-placement="hero-cta">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.46 3.44 1.32 4.95L2 22l5.32-1.39a9.86 9.86 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.82 9.82 0 0 0-2.89-7Z"/>
+              </svg>
+              Konsultasi Gratis via WA
+            </a>
+            <a class="lp-btn-ghost" href="#layanan">Lihat Jenis Pagar ↓</a>
+          </div>
+        </div>
+        <div class="lp-hero-stats" data-reveal style="--delay:200ms;">
+          <div class="lp-stat-card"><strong>Custom</strong><span>Sesuai Desain</span></div>
+          <div class="lp-stat-card"><strong>Gratis</strong><span>Survey Lokasi</span></div>
+          <div class="lp-stat-card"><strong>Anti</strong><span>Karat &amp; Cuaca</span></div>
+          <div class="lp-stat-card"><strong>Garansi</strong><span>Pengerjaan</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="lp-marquee-wrap" aria-hidden="true">
+      <ul class="lp-marquee">
+        {['Pagar Besi Minimalis','Pintu Pagar Swing','Pintu Lipat Besi','Survey Gratis',
+          'Desain Custom','Anti Karat','Harga Transparan','Pengerjaan Rapi',
+          'Pagar Besi Minimalis','Pintu Pagar Swing','Pintu Lipat Besi','Survey Gratis',
+          'Desain Custom','Anti Karat','Harga Transparan','Pengerjaan Rapi'].map(t=>(
+          <li><span>{t}</span></li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- LAYANAN -->
+    <section class="lp-section" id="layanan">
+      <div class="container">
+        <header class="lp-section-head" data-reveal>
+          <p class="lp-kicker">Jenis Pagar &amp; Pintu</p>
+          <h2>Pilih jenis pagar atau pintu yang sesuai keamanan dan tampilan bangunan Anda.</h2>
+          <p>
+            Setiap properti punya kebutuhan berbeda. Rumah tinggal biasanya butuh kombinasi pagar
+            dan pintu swing, sementara garasi sempit lebih cocok dengan pintu lipat besi yang hemat ruang.
+          </p>
+        </header>
+        <div class="lp-cards-4">
+          {services.map((s, i) => (
+            <article class="lp-card" data-reveal style={`--delay:${i * 90}ms;`}>
+              <span class="lp-card-num">{s.n}</span>
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
+              <ul class="lp-card-list">
+                {s.pts.map(pt => <li>{pt}</li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- USP -->
+    <div class="lp-usp-strip">
+      <div class="container lp-usp-grid">
+        {[
+          { icon:'🔍', t:'Survey Gratis', d:'Tim datang ke lokasi untuk ukur dan cek kondisi pondasi serta titik pemasangan tiang.' },
+          { icon:'🛡️', t:'Material Anti Karat', d:'Besi hollow galvanis atau solid dengan primer dan cat alkyd tahan cuaca luar ruang.' },
+          { icon:'📋', t:'Harga Transparan', d:'Penawaran tertulis sebelum pengerjaan dimulai — tidak ada biaya tersembunyi.' },
+          { icon:'⚡', t:'Bisa Akses Otomatis', d:'Pintu pagar bisa disiapkan untuk dipasang motor otomatis di kemudian hari.' },
+        ].map((u, i) => (
+          <div class="lp-usp-item" data-reveal style={`--delay:${i * 80}ms;`}>
+            <span class="lp-usp-icon">{u.icon}</span>
+            <h3>{u.t}</h3>
+            <p>{u.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- PROSES -->
+    <section class="lp-section" id="proses">
+      <div class="container">
+        <header class="lp-section-head" data-reveal>
+          <p class="lp-kicker">Alur Pengerjaan</p>
+          <h2>Empat tahap untuk pagar dan pintu yang presisi dan tahan lama.</h2>
+        </header>
+        <div class="lp-process-track">
+          {process.map((p, i) => (
+            <div class="lp-process-step" data-reveal style={`--delay:${i * 110}ms;`}>
+              <div class="lp-process-num">{p.n}</div>
+              <div class="lp-process-body"><h3>{p.t}</h3><p>{p.d}</p></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="lp-section lp-pricing-section">
+      <div class="container">
+        <header class="lp-section-head" data-reveal>
+          <p class="lp-kicker">Estimasi Harga</p>
+          <h2>Kisaran harga sebagai gambaran awal sebelum survey.</h2>
+          <p>Harga final ditentukan setelah survey — bergantung pada panjang area, model, dan ketebalan material.</p>
+        </header>
+        <div class="lp-pricing-grid">
+          {[
+            { label:'Pagar Minimalis Standar', size:'Per meter lari', range:'Rp 400 – 600 rb/m', note:'Hollow galvanis, model bilah vertikal' },
+            { label:'Pagar + Pintu Swing 1 Daun', size:'Paket standar', range:'Rp 5 – 8 jt', note:'Pagar 8 m + 1 pintu swing', popular:true },
+            { label:'Pintu Lipat Besi Garasi', size:'Per unit', range:'Rp 3 – 6 jt', note:'Tergantung lebar dan sistem rel' },
+          ].map((p, i) => (
+            <div class={`lp-price-card${p.popular ? ' lp-price-popular' : ''}`} data-reveal style={`--delay:${i * 100}ms;`}>
+              {p.popular && <span class="lp-popular-badge">Terpopuler</span>}
+              <h3>{p.label}</h3>
+              <p class="lp-price-size">{p.size}</p>
+              <p class="lp-price-range">{p.range}</p>
+              <p class="lp-price-note">{p.note}</p>
+            </div>
+          ))}
+        </div>
+        <p class="lp-pricing-cta-hint" data-reveal>
+          Ingin estimasi yang lebih akurat?&nbsp;
+          <a href={WA} target="_blank" rel="noreferrer"
+            data-track-whatsapp="true" data-whatsapp-placement="pricing-cta">
+            Hubungi kami via WhatsApp →
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="lp-section" id="faq">
+      <div class="container lp-faq-layout">
+        <div class="lp-faq-copy" data-reveal>
+          <p class="lp-kicker">FAQ</p>
+          <h2>Hal yang sering ditanyakan tentang pagar besi.</h2>
+          <p>Informasi harga, material, model, dan durasi pengerjaan — sebelum Anda menghubungi kami.</p>
+          <a class="lp-btn-wa lp-btn-wa--sm" href={WA} target="_blank" rel="noreferrer"
+            data-track-whatsapp="true" data-whatsapp-placement="faq-cta"
+            style="margin-top:24px;">
+            Tanya Langsung via WA
+          </a>
+        </div>
+        <div class="fm-faq lp-faq-list">
+          {faqs.map((f, i) => (
+            <details data-reveal style={`--delay:${i * 60}ms;`}>
+              <summary>{f.q}</summary>
+              <div class="fm-faq-body"><p>{f.a}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- AREA -->
+    <section class="lp-section lp-area-section">
+      <div class="container" data-reveal>
+        <p class="lp-kicker">Area Layanan</p>
+        <h2 class="lp-area-h">Jasa pagar besi dan pintu pagar tersedia di Bintaro dan sekitarnya.</h2>
+        <ul class="lp-area-chips">
+          {areas.map(a => <li>{a}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <!-- INTERNAL LINKS -->
+    <section class="lp-section lp-links-section">
+      <div class="container">
+        <p class="lp-kicker" data-reveal>Layanan Lainnya</p>
+        <div class="lp-links-grid">
+          {[
+            { href:'/kanopi',          title:'Kanopi Baja Ringan',        desc:'Kanopi carport dan teras — material baja ringan, survey gratis, custom.' },
+            { href:'/teralis-railing', title:'Teralis & Railing Tangga',  desc:'Teralis jendela anti maling, railing tangga & balkon stainless custom.' },
+            { href:'/',                title:'Semua Layanan Las',          desc:'Pagar, kanopi, railing, dan pintu garasi — bengkel Lestari Las Bintaro.' },
+          ].map((l, i) => (
+            <a class="lp-link-card" href={l.href} data-reveal style={`--delay:${i * 80}ms;`}>
+              <span class="lp-link-arrow">→</span>
+              <h3>{l.title}</h3>
+              <p>{l.desc}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="lp-cta-section" id="kontak">
+      <div class="container lp-cta-inner" data-reveal>
+        <div class="lp-cta-copy">
+          <p class="lp-kicker">Siap Pasang Pagar?</p>
+          <h2>Konsultasi gratis — kirim foto lokasi dan referensi model pagar Anda.</h2>
+          <p>Tim Lestari Las akan bantu tentukan desain dan estimasi harga yang sesuai kondisi lapangan.</p>
+        </div>
+        <div class="lp-cta-actions">
+          <a class="lp-btn-wa lp-btn-wa--lg" href={WA} target="_blank" rel="noreferrer"
+            data-track-whatsapp="true" data-whatsapp-placement="cta-section">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.46 3.44 1.32 4.95L2 22l5.32-1.39a9.86 9.86 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.82 9.82 0 0 0-2.89-7Z"/>
+            </svg>
+            WhatsApp Sekarang
+          </a>
+          <a class="lp-btn-outline" href={MAPS} target="_blank" rel="noreferrer">📍 Buka Lokasi Workshop</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP -->
+    <section class="lp-map-section">
+      <div class="container lp-map-grid">
+        <div class="lp-map-copy" data-reveal>
+          <p class="lp-kicker">Lokasi Workshop</p>
+          <h2>Lestari Las — Bintaro</h2>
+          <p>Jln Jombang Ciledug, depan Ruko Emerald Bintaro No. 7, sekitar 100 meter dari Apartemen Embarcadero.</p>
+          <div class="lp-contact-list">
+            <a href="tel:+6282113114498" class="lp-contact-item"><span>📞</span> 0821-1311-4498</a>
+            <a href={WA} target="_blank" rel="noreferrer" class="lp-contact-item"
+              data-track-whatsapp="true" data-whatsapp-placement="map-section">
+              <span>💬</span> WhatsApp Sekarang
+            </a>
+            <a href={MAPS} target="_blank" rel="noreferrer" class="lp-contact-item"><span>📍</span> Buka Google Maps</a>
+          </div>
+        </div>
+        <div class="lp-map-frame" data-reveal style="--delay:120ms;">
+          <iframe src={MAP_EMBED} title="Peta workshop Lestari Las Bintaro"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="lp-footer">
+    <div class="container lp-footer-inner">
+      <div class="lp-footer-brand">
+        <img src={`${basePath}brand/lestari-las-logo.webp`} alt="Logo Lestari Las" width="40" height="40" />
+        <span>Lestari Las</span>
+      </div>
+      <p class="lp-footer-copy">
+        Jasa pagar besi minimalis, pintu pagar swing, pintu lipat besi, kanopi, dan railing di Bintaro &amp; Tangerang Selatan.
+      </p>
+      <nav class="lp-footer-nav">
+        <a href="/kanopi">Kanopi</a>
+        <a href="/pagar-besi">Pagar Besi</a>
+        <a href="/teralis-railing">Teralis &amp; Railing</a>
+        <a href="/">Beranda</a>
+      </nav>
+      <p class="lp-footer-legal">
+        © {new Date().getFullYear()} Lestari Las &mdash; All rights reserved.
+        <a href="#top">↑ Kembali ke atas</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- FAB -->
+  <a class="lp-fab" href={WA} target="_blank" rel="noreferrer" aria-label="Hubungi via WhatsApp"
+    data-track-whatsapp="true" data-whatsapp-placement="floating-fab">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.46 3.44 1.32 4.95L2 22l5.32-1.39a9.86 9.86 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.82 9.82 0 0 0-2.89-7Z"/>
+    </svg>
+    <span>Hubungi WA</span>
+  </a>
+
+</LandingLayout>
+
+<style>
+/* 4-col card grid specific to pagar-besi */
+.lp-cards-4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 16px;
+}
+@media (max-width: 1100px) { .lp-cards-4 { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 640px)  { .lp-cards-4 { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,493 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro'
+
+const basePath = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`
+
+const WA = 'https://wa.me/6282113114498?text=Halo%20Lestari%20Las,%20saya%20mau%20tanya%20tentang%20jasa%20pasang%20kanopi.'
+const MAPS = 'https://maps.app.goo.gl/tUtmmHC4YYtszHC3A'
+const MAP_EMBED = 'https://www.google.com/maps?q=-6.2822222,106.7025833&z=18&output=embed'
+
+const title = 'Jasa Pasang Kanopi Baja Ringan Bintaro & Tangerang – Lestari Las'
+const description = 'Jasa pasang kanopi baja ringan untuk carport dan teras di Bintaro, Tangerang Selatan, Ciledug. Survey gratis, desain custom, pengerjaan rapi dan tahan lama.'
+const canonical = 'https://bengkel-las.com/kanopi'
+const ogImage = 'https://bengkel-las.com/images/exterior-showcase.jpg'
+
+const services = [
+  {
+    n: '01', title: 'Kanopi Carport',
+    desc: 'Pelindung kendaraan proporsional dengan lebar garasi dan fasad rumah. Rangka baja ringan dengan atap polycarbonate atau spandek, ukuran presisi.',
+    pts: ['Pilihan atap bening, doff, atau gelap', 'Ukuran mengikuti dimensi carport', 'Tiang dan rangka anti karat'],
+  },
+  {
+    n: '02', title: 'Kanopi Teras',
+    desc: 'Solusi teras depan atau samping — perlindungan dari hujan dan terik tanpa menghalangi cahaya alami masuk ke dalam rumah.',
+    pts: ['Desain menyesuaikan gaya rumah', 'Cocok teras depan dan belakang', 'Struktur ringan, pemasangan cepat'],
+  },
+  {
+    n: '03', title: 'Kanopi Polycarbonate',
+    desc: 'Material baja ringan ringan, tahan cuaca ekstrem, dan tidak memerlukan perawatan intensif — pilihan tepat untuk area residensial maupun komersial.',
+    pts: ['Lebih ringan dibanding besi konvensional', 'Tahan karat dan cuaca panas-hujan', 'Umur pakai lebih panjang'],
+  },
+]
+
+const process = [
+  { n:'01', t:'Kirim Foto & Ukuran', d:'Foto area carport atau teras dari beberapa sudut sudah cukup untuk memulai diskusi dan estimasi kasar.' },
+  { n:'02', t:'Survey Gratis ke Lokasi', d:'Tim kami datang langsung mengukur lebar, tinggi, kemiringan ideal, dan titik pemasangan tiang.' },
+  { n:'03', t:'Produksi di Workshop', d:'Rangka baja dipotong dan dirakit sesuai ukur lapangan. Sambungan las diperiksa sebelum pengecatan.' },
+  { n:'04', t:'Pemasangan & Finishing', d:'Setelah terpasang, semua sambungan dicek ulang dan permukaan dirapikan agar hasilnya kuat dan rapi.' },
+]
+
+const faqs = [
+  { q:'Berapa biaya pasang kanopi baja ringan?', a:'Harga tergantung luas area, jenis atap (polycarbonate atau spandek), dan kerumitan desain. Untuk carport standar 3×5 meter, estimasi mulai dari Rp 3–5 juta. Hubungi kami untuk survey gratis dan penawaran yang lebih akurat sesuai kondisi lapangan.' },
+  { q:'Apa perbedaan kanopi baja ringan dan besi konvensional?', a:'Baja ringan lebih ringan, anti karat, dan tidak perlu dicat ulang secara berkala. Bobotnya yang efisien membuat pemasangan lebih cepat dan beban pada dinding lebih kecil. Besi konvensional lebih kuat untuk bentang lebar, tetapi membutuhkan perawatan finishing yang lebih rutin.' },
+  { q:'Berapa lama proses pemasangan kanopi?', a:'Untuk kanopi carport atau teras ukuran standar, proses produksi dan pemasangan biasanya selesai dalam 1–3 hari setelah survey dan material siap. Ukuran lebih besar atau desain khusus memerlukan waktu lebih panjang.' },
+  { q:'Jenis atap apa yang paling cocok untuk kanopi carport?', a:'Polycarbonate bening cocok jika ingin cahaya tetap masuk dan area terasa terang. Polycarbonate doff mengurangi silau. Spandek lebih solid dan murah, tapi tidak transparan. Pilihan tergantung prioritas antara pencahayaan, tampilan, dan budget.' },
+  { q:'Apakah kanopi baja ringan kuat untuk hujan lebat dan angin kencang?', a:'Ya, jika rangka dan titik pemasangan dikerjakan dengan benar. Kekuatan kanopi ditentukan oleh kualitas sambungan, jarak tiang, dan kemiringan atap. Karena itu survey lapangan penting agar desain strukturnya sesuai kondisi bangunan.' },
+]
+
+const areas = ['Bintaro','Ciledug','Tangerang Selatan','Pesanggrahan','Kebayoran Lama','Ciputat','Pondok Aren','Serpong']
+
+const jsonLd = {
+  '@context':'https://schema.org',
+  '@graph':[
+    { '@type':'BreadcrumbList', itemListElement:[
+      { '@type':'ListItem', position:1, name:'Beranda', item:'https://bengkel-las.com/' },
+      { '@type':'ListItem', position:2, name:'Kanopi Baja Ringan', item:canonical },
+    ]},
+    { '@type':'LocalBusiness', '@id':'https://bengkel-las.com/#business',
+      name:'Lestari Las', description, url:'https://bengkel-las.com/',
+      telephone:'+6282113114498',
+      address:{ '@type':'PostalAddress', streetAddress:'Jln Jombang Ciledug, depan Ruko Emerald Bintaro No. 7', addressLocality:'Tangerang Selatan', addressRegion:'Banten', addressCountry:'ID' },
+      geo:{ '@type':'GeoCoordinates', latitude:-6.2822222, longitude:106.7025833 },
+      areaServed: areas.map(a=>({ '@type':'City', name:a })),
+    },
+    { '@type':'Service', name:'Jasa Pasang Kanopi Baja Ringan', provider:{ '@id':'https://bengkel-las.com/#business' }, areaServed:'Tangerang Selatan', description },
+    { '@type':'FAQPage', mainEntity: faqs.map(f=>({ '@type':'Question', name:f.q, acceptedAnswer:{ '@type':'Answer', text:f.a } })) },
+  ],
+}
+---
+
+<LandingLayout {title} {description} {canonical} {ogImage}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
+  <!-- ══════════════════════════════════════
+       ANNOUNCE BAR
+  ══════════════════════════════════════ -->
+  <div class="lp-announce">
+    <div class="lp-announce-inner">
+      <span>📍 Workshop: Jln Jombang Ciledug, Bintaro</span>
+      <span class="lp-divider">|</span>
+      <span>📞 <a href="tel:+6282113114498">0821-1311-4498</a></span>
+      <span class="lp-divider">|</span>
+      <span>✅ Survey &amp; Estimasi Gratis</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       HEADER — new, not from BaseLayout
+  ══════════════════════════════════════ -->
+  <header class="lp-header" id="top">
+    <div class="container lp-header-inner">
+      <a class="lp-brand" href="/" aria-label="Lestari Las — Beranda">
+        <img src={`${basePath}brand/lestari-las-logo.webp`} alt="Logo Lestari Las" width="52" height="52" />
+        <span class="lp-brand-text">
+          <strong>Lestari Las</strong>
+          <small>Bintaro &amp; Tangerang Selatan</small>
+        </span>
+      </a>
+
+      <nav class="lp-nav" aria-label="Navigasi halaman kanopi">
+        <a href="#layanan">Layanan</a>
+        <a href="#proses">Proses</a>
+        <a href="#faq">FAQ</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+
+      <a
+        class="lp-header-cta"
+        href={WA}
+        target="_blank"
+        rel="noreferrer"
+        data-track-whatsapp="true"
+        data-whatsapp-placement="header-cta"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.46 3.44 1.32 4.95L2 22l5.32-1.39a9.86 9.86 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.82 9.82 0 0 0-2.89-7Z"/>
+        </svg>
+        Hubungi WA
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══════════════════════════════════════
+         BREADCRUMB
+    ══════════════════════════════════════ -->
+    <nav class="container lp-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Beranda</a></li>
+        <li aria-current="page">Kanopi Baja Ringan</li>
+      </ol>
+    </nav>
+
+    <!-- ══════════════════════════════════════
+         HERO — full image bg, conversion focus
+    ══════════════════════════════════════ -->
+    <section class="lp-hero">
+      <div class="lp-hero-bg" style={`background-image:url(${basePath}images/exterior-showcase.jpg)`} aria-hidden="true"></div>
+      <div class="lp-hero-overlay" aria-hidden="true"></div>
+
+      <div class="container lp-hero-content">
+        <div class="lp-hero-copy" data-reveal>
+          <p class="lp-eyebrow">Jasa Kanopi Custom — Bintaro &amp; Tangerang</p>
+          <h1>
+            Pasang Kanopi<br />
+            <mark>Baja Ringan</mark><br />
+            Carport &amp; Teras
+          </h1>
+          <p class="lp-lead">
+            Desain custom, ukuran presisi hasil survey lapangan. Tahan karat,
+            anti bocor, pemasangan rapi — langsung oleh tim Lestari Las.
+          </p>
+
+          <div class="lp-hero-actions">
+            <a
+              class="lp-btn-wa"
+              href={WA}
+              target="_blank"
+              rel="noreferrer"
+              data-track-whatsapp="true"
+              data-whatsapp-placement="hero-cta"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.46 3.44 1.32 4.95L2 22l5.32-1.39a9.86 9.86 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.82 9.82 0 0 0-2.89-7Z"/>
+              </svg>
+              Konsultasi Gratis via WA
+            </a>
+            <a class="lp-btn-ghost" href="#layanan">Lihat Jenis Kanopi ↓</a>
+          </div>
+        </div>
+
+        <div class="lp-hero-stats" data-reveal style="--delay:200ms;">
+          <div class="lp-stat-card">
+            <strong><span data-count-to="10" data-count-suffix="+">0+</span></strong>
+            <span>Tahun Pengalaman</span>
+          </div>
+          <div class="lp-stat-card">
+            <strong>Gratis</strong>
+            <span>Survey Lokasi</span>
+          </div>
+          <div class="lp-stat-card">
+            <strong>Custom</strong>
+            <span>Sesuai Ukuran</span>
+          </div>
+          <div class="lp-stat-card">
+            <strong>Garansi</strong>
+            <span>Pengerjaan</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         MARQUEE — trust signals
+    ══════════════════════════════════════ -->
+    <div class="lp-marquee-wrap" aria-hidden="true">
+      <ul class="lp-marquee">
+        {['Kanopi Carport','Survey Gratis','Baja Ringan SNI','Anti Karat','Polycarbonate','Desain Custom','Harga Transparan','Pemasangan Rapi',
+          'Kanopi Carport','Survey Gratis','Baja Ringan SNI','Anti Karat','Polycarbonate','Desain Custom','Harga Transparan','Pemasangan Rapi'].map(t=>(
+          <li><span>{t}</span></li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         SERVICES — 3 jenis kanopi
+    ══════════════════════════════════════ -->
+    <section class="lp-section" id="layanan">
+      <div class="container">
+        <header class="lp-section-head" data-reveal>
+          <p class="lp-kicker">Jenis Kanopi</p>
+          <h2>Pilih kanopi yang sesuai dengan fungsi dan tampilan area rumah Anda.</h2>
+          <p>
+            Carport fokus pada bentang dan beban atap, teras lebih fleksibel dalam desain,
+            dan pilihan material atap menentukan pencahayaan serta umur pakai.
+          </p>
+        </header>
+
+        <div class="lp-cards-3">
+          {services.map((s, i) => (
+            <article class="lp-card" data-reveal style={`--delay:${i * 100}ms;`}>
+              <span class="lp-card-num">{s.n}</span>
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
+              <ul class="lp-card-list">
+                {s.pts.map(pt => <li>{pt}</li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         USP STRIP — 4 keunggulan
+    ══════════════════════════════════════ -->
+    <div class="lp-usp-strip">
+      <div class="container lp-usp-grid">
+        {[
+          { icon:'🔍', t:'Survey Gratis', d:'Tim datang langsung ke lokasi, ukur dan cek kondisi lapangan tanpa biaya.' },
+          { icon:'⚙️', t:'Material Pilihan', d:'Baja ringan SNI, profil C dan reng berkualitas untuk rangka yang kuat.' },
+          { icon:'📋', t:'Harga Transparan', d:'Penawaran tertulis sebelum pengerjaan dimulai — tidak ada biaya tersembunyi.' },
+          { icon:'🛡️', t:'Garansi Pengerjaan', d:'Masalah pada sambungan atau pemasangan ditangani tanpa biaya tambahan.' },
+        ].map((u, i) => (
+          <div class="lp-usp-item" data-reveal style={`--delay:${i * 80}ms;`}>
+            <span class="lp-usp-icon">{u.icon}</span>
+            <h3>{u.t}</h3>
+            <p>{u.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         PROCESS — 4 langkah dengan connector
+    ══════════════════════════════════════ -->
+    <section class="lp-section" id="proses">
+      <div class="container">
+        <header class="lp-section-head" data-reveal>
+          <p class="lp-kicker">Alur Pengerjaan</p>
+          <h2>Empat tahap untuk kanopi yang terpasang presisi dan tahan lama.</h2>
+        </header>
+
+        <div class="lp-process-track">
+          {process.map((p, i) => (
+            <div class="lp-process-step" data-reveal style={`--delay:${i * 110}ms;`}>
+              <div class="lp-process-num">{p.n}</div>
+              <div class="lp-process-body">
+                <h3>{p.t}</h3>
+                <p>{p.d}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         PRICING HINT
+    ══════════════════════════════════════ -->
+    <section class="lp-section lp-pricing-section">
+      <div class="container">
+        <header class="lp-section-head" data-reveal>
+          <p class="lp-kicker">Estimasi Harga</p>
+          <h2>Kisaran harga sebagai gambaran awal sebelum survey.</h2>
+          <p>Harga final ditentukan setelah survey lokasi — bergantung pada luas area, jenis atap, dan detail desain.</p>
+        </header>
+        <div class="lp-pricing-grid">
+          {[
+            { label:'Kanopi Teras Kecil', size:'2–3 m²', range:'Rp 1,5 – 2,5 jt', note:'Atap polycarbonate doff' },
+            { label:'Kanopi Carport Standar', size:'3×5 m', range:'Rp 3 – 5 jt', note:'Paling banyak dipesan', popular:true },
+            { label:'Kanopi Carport Lebar', size:'4×6 m ke atas', range:'Rp 5 – 9 jt+', note:'Tergantung material & model' },
+          ].map((p, i) => (
+            <div class={`lp-price-card${p.popular ? ' lp-price-popular' : ''}`} data-reveal style={`--delay:${i * 100}ms;`}>
+              {p.popular && <span class="lp-popular-badge">Terpopuler</span>}
+              <h3>{p.label}</h3>
+              <p class="lp-price-size">{p.size}</p>
+              <p class="lp-price-range">{p.range}</p>
+              <p class="lp-price-note">{p.note}</p>
+            </div>
+          ))}
+        </div>
+        <p class="lp-pricing-cta-hint" data-reveal>
+          Ingin estimasi yang lebih akurat?&nbsp;
+          <a href={WA} target="_blank" rel="noreferrer" data-track-whatsapp="true" data-whatsapp-placement="pricing-cta">
+            Hubungi kami via WhatsApp →
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         FAQ — smooth accordion (AnimatePresence)
+    ══════════════════════════════════════ -->
+    <section class="lp-section" id="faq">
+      <div class="container lp-faq-layout">
+        <div class="lp-faq-copy" data-reveal>
+          <p class="lp-kicker">FAQ</p>
+          <h2>Hal yang sering ditanyakan sebelum pasang kanopi.</h2>
+          <p>Jawaban singkat sebelum Anda menghubungi kami untuk konsultasi lebih lanjut.</p>
+          <a
+            class="lp-btn-wa lp-btn-wa--sm"
+            href={WA}
+            target="_blank"
+            rel="noreferrer"
+            data-track-whatsapp="true"
+            data-whatsapp-placement="faq-cta"
+            style="margin-top:24px;"
+          >
+            Tanya Langsung via WA
+          </a>
+        </div>
+        <div class="fm-faq lp-faq-list">
+          {faqs.map((f, i) => (
+            <details data-reveal style={`--delay:${i * 60}ms;`}>
+              <summary>{f.q}</summary>
+              <div class="fm-faq-body"><p>{f.a}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         AREA LAYANAN
+    ══════════════════════════════════════ -->
+    <section class="lp-section lp-area-section">
+      <div class="container" data-reveal>
+        <p class="lp-kicker">Area Layanan</p>
+        <h2 class="lp-area-h">Jasa pasang kanopi tersedia di Bintaro dan sekitarnya.</h2>
+        <ul class="lp-area-chips">
+          {areas.map(a => <li>{a}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         INTERNAL LINKS
+    ══════════════════════════════════════ -->
+    <section class="lp-section lp-links-section">
+      <div class="container">
+        <p class="lp-kicker" data-reveal>Layanan Lainnya</p>
+        <div class="lp-links-grid">
+          {[
+            { href:'/pagar-besi', title:'Pagar Besi & Pintu Pagar', desc:'Pagar rumah minimalis, pintu swing, pintu lipat besi.' },
+            { href:'/teralis-railing', title:'Teralis & Railing Tangga', desc:'Teralis jendela anti maling, railing tangga & balkon stainless.' },
+            { href:'/', title:'Semua Layanan Las', desc:'Pagar, kanopi, railing, dan pintu garasi — bengkel Lestari Las.' },
+          ].map((l, i) => (
+            <a class="lp-link-card" href={l.href} data-reveal style={`--delay:${i * 80}ms;`}>
+              <span class="lp-link-arrow">→</span>
+              <h3>{l.title}</h3>
+              <p>{l.desc}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         CTA SECTION — kontak
+    ══════════════════════════════════════ -->
+    <section class="lp-cta-section" id="kontak">
+      <div class="container lp-cta-inner" data-reveal>
+        <div class="lp-cta-copy">
+          <p class="lp-kicker">Siap Pasang Kanopi?</p>
+          <h2>Konsultasi gratis — ceritakan kebutuhan dan kirim foto lokasi.</h2>
+          <p>Tim Lestari Las akan bantu tentukan desain dan estimasi harga yang sesuai kondisi lapangan Anda.</p>
+        </div>
+        <div class="lp-cta-actions">
+          <a
+            class="lp-btn-wa lp-btn-wa--lg"
+            href={WA}
+            target="_blank"
+            rel="noreferrer"
+            data-track-whatsapp="true"
+            data-whatsapp-placement="cta-section"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.46 3.44 1.32 4.95L2 22l5.32-1.39a9.86 9.86 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.82 9.82 0 0 0-2.89-7Z"/>
+            </svg>
+            WhatsApp Sekarang
+          </a>
+          <a class="lp-btn-outline" href={MAPS} target="_blank" rel="noreferrer">
+            📍 Buka Lokasi Workshop
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         MAP + LOCATION
+    ══════════════════════════════════════ -->
+    <section class="lp-map-section">
+      <div class="container lp-map-grid">
+        <div class="lp-map-copy" data-reveal>
+          <p class="lp-kicker">Lokasi Workshop</p>
+          <h2>Lestari Las — Bintaro</h2>
+          <p>
+            Jln Jombang Ciledug, depan Ruko Emerald Bintaro No. 7,
+            sekitar 100 meter dari Apartemen Embarcadero.
+          </p>
+          <div class="lp-contact-list">
+            <a href="tel:+6282113114498" class="lp-contact-item">
+              <span>📞</span> 0821-1311-4498
+            </a>
+            <a href={WA} target="_blank" rel="noreferrer" class="lp-contact-item" data-track-whatsapp="true" data-whatsapp-placement="map-section">
+              <span>💬</span> WhatsApp Sekarang
+            </a>
+            <a href={MAPS} target="_blank" rel="noreferrer" class="lp-contact-item">
+              <span>📍</span> Buka Google Maps
+            </a>
+          </div>
+        </div>
+        <div class="lp-map-frame" data-reveal style="--delay:120ms;">
+          <iframe
+            src={MAP_EMBED}
+            title="Peta workshop Lestari Las Bintaro"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════
+       FOOTER — new, fresh design
+  ══════════════════════════════════════ -->
+  <footer class="lp-footer">
+    <div class="container lp-footer-inner">
+      <div class="lp-footer-brand">
+        <img src={`${basePath}brand/lestari-las-logo.webp`} alt="Logo Lestari Las" width="40" height="40" />
+        <span>Lestari Las</span>
+      </div>
+      <p class="lp-footer-copy">
+        Jasa kanopi baja ringan, pagar besi, teralis jendela &amp; railing tangga di Bintaro &amp; Tangerang Selatan.
+      </p>
+      <nav class="lp-footer-nav">
+        <a href="/kanopi">Kanopi</a>
+        <a href="/pagar-besi">Pagar Besi</a>
+        <a href="/teralis-railing">Teralis &amp; Railing</a>
+        <a href="/">Beranda</a>
+      </nav>
+      <p class="lp-footer-legal">
+        © {new Date().getFullYear()} Lestari Las &mdash; All rights reserved.
+        <a href="#top">↑ Kembali ke atas</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Floating WA -->
+  <a
+    class="lp-fab"
+    href={WA}
+    target="_blank"
+    rel="noreferrer"
+    aria-label="Hubungi via WhatsApp"
+    data-track-whatsapp="true"
+    data-whatsapp-placement="floating-fab"
+  >
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.46 3.44 1.32 4.95L2 22l5.32-1.39a9.86 9.86 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.82 9.82 0 0 0-2.89-7Z"/>
+    </svg>
+    <span>Hubungi WA</span>
+  </a>
+
+</LandingLayout>
+
